@@ -1,8 +1,0 @@
-Index: test.txt
-===================================================================
-diff --git a/test.txt b/test.txt
-deleted file mode 100644
---- a/test.txt	(revision 84af77165bbc09a490eb9ed273abbe2466589e16)
-+++ /dev/null	(revision 84af77165bbc09a490eb9ed273abbe2466589e16)
-@@ -1,1 +0,0 @@
--This is a test txt
