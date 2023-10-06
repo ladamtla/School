@@ -12,4 +12,4 @@ for years in years:
     else:
        print(f"{years} év nem szököév")
 
-print(f"Összesen {i}db szökőév van a megadott tartományban.")
+print(f"Összesen {i}db szökőév van {start} és {stop} között.")
