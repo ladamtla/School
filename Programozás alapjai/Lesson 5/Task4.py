@@ -1,5 +1,4 @@
 def sumday(date):
-    date = input("Dátum: ")
     y, m, d = date.split(sep=".")
     szum = 0
     y = int(y)
@@ -17,6 +16,9 @@ def sumday(date):
         szum = szum + days[i]
 
     szum = szum + d - days[m - 1]
+
+    return szum
+
 
 date = input("Dátum: ")
 print(f"{date} az év {sumday(date)}. napja.")
