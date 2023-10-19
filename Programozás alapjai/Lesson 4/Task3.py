@@ -1,3 +1,4 @@
+
 num = 0
 szum = 0
 while True:
