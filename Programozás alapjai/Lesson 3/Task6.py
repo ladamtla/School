@@ -1,5 +1,7 @@
+# Bekérünk egy pontszámot
 point = int(input("Írj be egy pontszámot: "))
 
+# Ha a pontszám a megfelelő tartományban van, egyessével megvizsgáljuk, hogy melyik intervallumokba esik bele
 if point < 0 or point > 100:
     print("Hibás pontszám")
 else:
@@ -13,4 +15,6 @@ else:
        jegy = 4
     elif point >= 90:
        jegy = 5
+
+    # Majd kiírjuk az érdemjegyet
     print(f"Érdemjegy: {jegy}")
