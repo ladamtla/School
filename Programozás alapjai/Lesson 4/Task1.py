@@ -1,4 +1,4 @@
-# Kitalált barátok neveiből készítünk egy listát
+# Kitalált barátok neveiből definálunk egy listát
 names = ["Pisti", "Laci", "Józsi", "Másik Laci"]
 
 # Egyessével végigmegyünk a lista elemein, és mindegyiknél kiírunk egy egyedi szöveget
