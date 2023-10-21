@@ -75,9 +75,9 @@ def atlag(jegyek):
 
 def elteres_kiiro(atlag, jegyek):
     """
-    Kiszámolja a dolgozatok átlagtól való eltérését
+    Kiszámolja és kiírja a dolgozatok átlagtól való eltérését
     :param atlag: átlag
-    :param jegyek:dolgogatok jegyei listában
+    :param jegyek: dolgogatok jegyei listában
     :return: -
     """
     count = 1
