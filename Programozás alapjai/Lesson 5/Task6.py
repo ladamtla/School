@@ -37,7 +37,7 @@ def jegy_szamlalo(jegyek):
     """
     Kiszámolja, a jegyek számát típúsonként
     :param jegyek: Érdemjegyek listában
-    :return: Jegy típúsok darabszáma listában 1-5-ig
+    :return: Jegy típúsok darabszáma 5 elemű listában 1-5-ig
     """
     one = jegyek.count(1)
     two = jegyek.count(2)
@@ -85,11 +85,32 @@ def elteres_kiiro(atlag, jegyek):
         print(f"Dolgozat{count}: {jegy}, elteres: {jegy-atlag}")
         count += 1
 
-pontok = [10, 41, 98, 27, 94, 69, 67, 16, 19, 83]
+def randompont_generator(db):
+    """
+    0-100 ig számok között generál egy "db" hosszúságú listát.
+    :param db: lista hossza
+    :return: random számokkal feltöltött lista
+    """
+    import random
+    pontok = []
+    i = 0
+
+    while i < db:
+        pont = random.randrange(0, 100)
+        pontok.append(pont)
+        i += 1
+    return pontok
+
+
+
+db = int(input("Dolgozatok száma a random generáláláshoz:"))
+
+pontok = randompont_generator(db)
 
 jegyek = multi_jegy_szamito(pontok)
 jegyek_szama = jegy_szamlalo(jegyek)
 
+print("Pontok:", pontok)
 print("Jegyek egyessével:", jegyek)
 print("Jegyek db száma (1-5):", jegyek_szama)
 tablazat_rajzolo(jegyek_szama)
