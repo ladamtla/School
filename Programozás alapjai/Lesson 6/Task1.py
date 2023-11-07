@@ -47,7 +47,7 @@ def count_positive_or_even(start, end):
     count = 0
     szum = 0
     for num in range(start, end):
-        if num > 0 or num%2 = 0:
+        if num > 0 or num%2 == 0:
             count +=1
             szum = szum * num
     average = szum ** (1/count)

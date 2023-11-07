@@ -1,4 +1,4 @@
-#
+
 def jegy_szamito(point):
     """
     Kiszámolja egy pont-ból az érdemjegyet
@@ -20,7 +20,6 @@ def jegy_szamito(point):
         elif point >= 90:
             jegy = 5
     return jegy
-
 def multi_jegy_szamito(pontok):
     """
     Kiszámol több pontból, több jegyet. Bemenete és kimenete is lista
@@ -32,7 +31,6 @@ def multi_jegy_szamito(pontok):
         jegy = jegy_szamito(point)
         jegyek.append(jegy)
     return jegyek
-
 def jegy_szamlalo(jegyek):
     """
     Kiszámolja, a jegyek számát típúsonként
@@ -45,7 +43,6 @@ def jegy_szamlalo(jegyek):
     four = jegyek.count(4)
     five = jegyek.count(5)
     return [one, two, three, four, five]
-
 def tablazat_rajzolo(jegyek_szama):
     """
     A jegyek darabszámából egy táblázatot rajzol
@@ -59,7 +56,6 @@ def tablazat_rajzolo(jegyek_szama):
         print(f"|  {jegy}   |   {db}  |")
         jegy += 1
     print("---------------")
-
 def atlag(jegyek):
     """
     Kiszámolja a jegyek átlagát egy listából.
@@ -72,7 +68,6 @@ def atlag(jegyek):
         szum = szum + jegy
         count += 1
     return szum / count
-
 def elteres_kiiro(atlag, jegyek):
     """
     Kiszámolja és kiírja a dolgozatok átlagtól való eltérését
@@ -82,9 +77,8 @@ def elteres_kiiro(atlag, jegyek):
     """
     count = 1
     for jegy in jegyek:
-        print(f"Dolgozat{count}: {jegy}, elteres: {jegy-atlag}")
+        print(f"Dolgozat_{count}: {jegy}, eltérés az átlagtól: {jegy-atlag}")
         count += 1
-
 def randompont_generator(db):
     """
     0-100 ig számok között generál egy "db" hosszúságú listát.
@@ -103,7 +97,7 @@ def randompont_generator(db):
 
 
 
-db = int(input("Dolgozatok száma a random generáláláshoz:"))
+db = int(input("Dolgozatok száma a random generáláláshoz: "))
 
 pontok = randompont_generator(db)
 
@@ -116,4 +110,3 @@ print("Jegyek db száma (1-5):", jegyek_szama)
 tablazat_rajzolo(jegyek_szama)
 print(f"A jegyek átlaga: {atlag(jegyek)}")
 elteres_kiiro(atlag(jegyek), jegyek)
-
