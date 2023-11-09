@@ -3,7 +3,7 @@ i = 0
 while True:
     be = input("Írj be egy számot: ")
     if be == "x":
-        print(f"Program vége. Összesen ennyi {i} művelet történt")
+        print(f"Program vége. Összesen {i} művelet történt")
         break
     else:
         szam = int(be)
