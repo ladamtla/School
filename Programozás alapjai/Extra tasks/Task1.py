@@ -1,12 +1,12 @@
 import random
 
-counter = 1
 ask = 1
 
-while ask == 1:
-    counter = 1
+while True:
     RNum = random.randint(1, 100)
+    counter = 1
     while True:
+
         TNum = input("Melyik számra gondoltam?: ")
         TNum = int(TNum)
         if RNum == TNum:
@@ -20,14 +20,13 @@ while ask == 1:
             print("Kisebb számra fondoltam!")
             counter += 1
             continue
-    while True:
-        asker = input("Szeretnél tovább játszani? (y/n): ")
-        if asker == "y" or "Y":
-            ask = 1
-            break
-        elif asker == "n" or "N":
-            ask = 0
-            break
-        else:
-            continue
+
+    asker = input("Szeretnél tovább számoldni? (y/n): ")
+    if asker == "y":
+        continue
+    elif asker == "n":
+        break
+
+
+
 print("Vége a játéknak.")
