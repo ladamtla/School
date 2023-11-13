@@ -7,7 +7,7 @@ def wordGame (words):
     rnum = random.randint(0, len(words)-1)
     word = words[rnum]
     base = ["_"] * len(word)
-    print("Találd ki a szót:", " ".join(base))
+    print("Találd ki a szót:", "".join(base))
 
     while "_" in base:
         index = 0
@@ -23,7 +23,7 @@ def wordGame (words):
                 if letter == tip:
                     base[index] = tip
                 index += 1
-            print("Igen:", " ".join(base))
+            print("Igen:", "".join(base))
             memory.append(tip)
         else:
             print("Nincsen benne")
