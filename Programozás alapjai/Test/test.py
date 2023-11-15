@@ -1,0 +1,2 @@
+move = input("")
+print(move)
