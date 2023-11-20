@@ -1,4 +1,6 @@
 import random
+import keyboard
+import time
 
 def bombgenetartor():
     matrix = [[0,0,0,0,0,0,0,0,0,0],
@@ -72,7 +74,6 @@ def playSpaceUpdater(cortable, bombslist):
         basecor = newcor
 
 
-    print(bombslist)
     for bomb in bombslist:
         if bomb == cortable[-1]:
             matrix[cortable[-1][0]][cortable[-1][1]] = "▒"
@@ -102,8 +103,11 @@ cortable = []
 
 while True:
     while True:
-        move = input("Move: ")
-        if move == "w":
+        key = keyboard.read_event(suppress=True).name
+
+        time.sleep(0.2)
+
+        if key == "up":
             x = cor[0] - 1
             y = cor[1]
             if checker(x, y) == True:
@@ -111,7 +115,7 @@ while True:
             else:
                 print("Nem léphet ki a pálya szélén!")
                 continue
-        elif move == "a":
+        elif key == "left":
             x = cor[0]
             y = cor[1] - 1
             if checker(x, y) == True:
@@ -119,7 +123,7 @@ while True:
             else:
                 print("Nem léphet ki a pálya szélén!")
                 continue
-        elif move == "s":
+        elif key == "down":
             x = cor[0] + 1
             y = cor[1]
             if checker(x, y) == True:
@@ -127,7 +131,7 @@ while True:
             else:
                 print("Nem léphet ki a pálya szélén!")
                 continue
-        elif move == "d":
+        elif key == "right":
             x = cor[0]
             y = cor[1] + 1
             if checker(x, y) == True:
@@ -140,6 +144,7 @@ while True:
     cor = [x, y]
     cortable.append(cor)
     playspace, bomb = playSpaceUpdater(cortable, bombslist)
+    print(" ")
     matrixDrawer(playspace)
     if bomb == True:
         print("Vége a játéknak")
@@ -148,5 +153,3 @@ while True:
         break
     else:
         continue
-
-
