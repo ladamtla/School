@@ -141,11 +141,13 @@ while True:
                 continue
         else:
             continue
+
     cor = [x, y]
     cortable.append(cor)
     playspace, bomb = playSpaceUpdater(cortable, bombslist)
     print(" ")
     matrixDrawer(playspace)
+
     if bomb == True:
         print("Vége a játéknak")
         print("Bombára léptél!")
