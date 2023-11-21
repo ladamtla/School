@@ -76,7 +76,7 @@ def playSpaceUpdater(cortable, bombslist):
 
     for bomb in bombslist:
         if bomb == cortable[-1]:
-            matrix[cortable[-1][0]][cortable[-1][1]] = "▒"
+            matrix[cortable[-1][0]][cortable[-1][1]] = "⎈"
             bombstat = True
 
     return matrix, bombstat
@@ -149,6 +149,7 @@ while True:
     matrixDrawer(playspace)
 
     if bomb == True:
+        time.sleep(2)
         print("Vége a játéknak")
         print("Bombára léptél!")
         print(f"Elért pontszám: {stepCounter(cortable)}")
