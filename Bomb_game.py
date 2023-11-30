@@ -92,8 +92,6 @@ def stepCounter(cortable):
     return len(stepscord)-1
 
 
-name = input("Játékos neve: ")
-
 
 playspace = playSpaceGenerator()
 bombslist = bombgenetartor()
