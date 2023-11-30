@@ -92,6 +92,8 @@ def stepCounter(cortable):
     return len(stepscord)-1
 
 
+name = input("Játékos neve: ")
+
 
 playspace = playSpaceGenerator()
 bombslist = bombgenetartor()
@@ -100,6 +102,7 @@ matrixDrawer(playspace)
 
 cor = [9, 0]
 cortable = []
+
 
 while True:
     while True:
@@ -153,6 +156,7 @@ while True:
         print("Vége a játéknak")
         print("Bombára léptél!")
         print(f"Elért pontszám: {stepCounter(cortable)}")
+
         break
     else:
         continue
