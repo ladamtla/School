@@ -14,19 +14,18 @@ def sin_cos_calculator(m, x):
     :param x: szám 
     :return: szám sinusza, koszinusza
     """
-    sder = [0, 1, 0, -1]
-    cder = [1, 0, -1, 0]
-    s = 0
-    c = 0
-    se = 0
+    sders = [0, 1, 0, -1]
+    cders = [1, 0, -1, 0]
+    ssin = 0
+    scos = 0
 
     while m >= 0:
-        c += (cder[m%4]/fact(m))*x**m
-        s += (sder[m%4]/fact(m))*x**m
+        scos += (cders[m % 4] / fact(m)) * x ** m
+        ssin += (sders[m % 4] / fact(m)) * x ** m
 
         m -= 1
 
-    return s, c
+    return ssin, scos
 
 
 m = int(input("Adja meg a MacLaurin sor fokszámát: "))
