@@ -31,5 +31,5 @@ def sin_cos_calculator(m, x):
 m = int(input("Adja meg a MacLaurin sor fokszámát: "))
 x = int(input("Adjon meg egy számot: "))
 sin, cos = sin_cos_calculator(m, x)
-print(f"A {x} szinusza: {round(sin, 10)} - hiba: {abs(math.sin(x)-sin)}")
-print(f"A {x} koszinusza: {round(cos, 10)} - hiba: {abs(math.cos(x)-cos)}")
+print(f"A {x} szinusza: {round(sin, 10)} - hiba: {abs(math.sin(x)-sin)} Math fügvénnyel: {math.sin(x)}")
+print(f"A {x} koszinusza: {round(cos, 10)} - hiba: {abs(math.cos(x)-cos)} Math fügvénnyel: {math.cos(x)}")
