@@ -13,7 +13,6 @@ class Person:
         self.email = input("Email: ")
         self.city = input("Város: ")
         self.username = input("Felhasználónév: ")
-        self.passw = input("Jelszó: ")
 
     def __str__(self):
         return f"Név: {self.name}\nTelefonszám: {self.phone}\nE-mail cím: {self.email}\nVáros: {self.city}\nFelhasználónév: {self.username}\nJelszó: {self.passw}"
