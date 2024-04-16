@@ -1,12 +1,11 @@
 from admin import Admin
 from employee import Employee
 from customer import Customer
+from updater import updater
 
-admin1 = Admin("Ádám","+36204472104", "ladam050406@gmail.com", "Mnyarad", "ladamtla", "AdamT", 789)
-cust1 = Customer("Ádám","+36204472104", "ladam050406@gmail.com", "Mnyarad", "ladamtla", "AdamT", 215)
-emp1 = Employee("Ádám","+36204472104", "ladam050406@gmail.com", "Mnyarad", "ladamtla", "AdamT", 7899)
-print(admin1)
-print(cust1)
-print(emp1)
-Admin.data_updater(admin1)
-print(admin1)
+
+admins = updater("Peoples/admins.csv", Admin)
+employees = updater("Peoples/employees.csv", Employee)
+customers = updater("Peoples/customers.csv", Customer)
+
+print(customers[2])
