@@ -1,18 +1,25 @@
+from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, usernamevalidator, passwdvalidator
 class Person:
     def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str):
-        self.name = name
-        self.phone = phone
-        self.email = email
-        self.city = city
-        self.username = username
-        self.passw = passw
+        self.__name = name
+        self.__phone = phone
+        self.__email = email
+        self.__city = city
+        self.__username = username
+        self.__passw = passw
+
+    @property
+    def name(self):
+        return self.__name
+
 
     def data_updater(self):
-        self.name = input("Név: ")
-        self.phone = input("Telefonszám: ")
-        self.email = input("Email: ")
-        self.city = input("Város: ")
-        self.username = input("Felhasználónév: ")
+        self.__name = namevalidator()
+        self.__phone = phonevalidator()
+        self.__email = emailvalidator()
+        self.__city = cityvalidator()
+        self.__username = usernamevalidator()
+        self.__passw = passwdvalidator()
 
     def __str__(self):
-        return f"Név: {self.name}\nTelefonszám: {self.phone}\nE-mail cím: {self.email}\nVáros: {self.city}\nFelhasználónév: {self.username}\nJelszó: {self.passw}"
+        return f"Név: {self.__name}\nTelefonszám: {self.__phone}\nE-mail cím: {self.__email}\nTelepülés: {self.__city}\nFelhasználónév: {self.__username}\nJelszó: {self.__passw}"
