@@ -1,7 +1,7 @@
 from person import Person
 class Admin(Person):
-    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, adminid: int):
-        super().__init__(name, phone, email, city, username, passw)
+    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, adminid: int):
+        super().__init__(name, phone, email, city, username, passw, pid)
         self.__adminid = adminid
 
     @property

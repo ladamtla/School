@@ -1,7 +1,5 @@
 import csv
-from admin import Admin
-from employee import Employee
-from customer import Customer
+
 
 def updater(filename, clas):
     list = []
@@ -11,6 +9,7 @@ def updater(filename, clas):
             i = clas(*row)
             list.append(i)
     return list
+
 
 
 

@@ -1,4 +1,5 @@
 import re
+import csv
 
 RED = "\033[31m"
 RESET = "\033[0m"
@@ -41,18 +42,24 @@ def emailvalidator():
             continue
     return email
 
+
 def cityvalidator():
-    pattern = r'^[a-zA-Z]+$'
+
+    cities_set = set()
+    with open("cdata/hun_cities.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            cities_set.add(row[0])
+
     while True:
         try:
             city = input("Település: ")
-            if re.match(pattern, city):
-                break
+            if city in cities_set:
+                return city
             else:
-                print(f"{RED}Valós település nevet adjon meg!{RESET}")
+                print(f"{RED}Valós, magyar településnevet adjon meg!{RESET}")
         except:
             continue
-    return city
 
 def usernamevalidator():
     pattern = "^[a-zA-Z0-9]{5,}$"

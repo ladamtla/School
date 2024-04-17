@@ -12,5 +12,5 @@ customers = updater("Peoples/customers.csv", Customer)
 
 
 
-admins[0].data_updater()
-print(admins[0])
+customers[2].data_updater()
+print(employees[2])
