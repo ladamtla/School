@@ -57,7 +57,7 @@ def cityvalidator():
             if city in cities_set:
                 return city
             else:
-                print(f"{RED}Valós, magyar településnevet adjon meg!{RESET}")
+                print(f"{RED}Valós, Magyar településnevet adjon meg!{RESET}")
         except:
             continue
 
@@ -78,10 +78,10 @@ def passwdvalidator():
     while True:
         try:
             passwd = input("Jelszó: ")
-            if len(passwd) > 7 and re.search(r'[a-z]', passwd) and re.search(r'[A-Z]', passwd) and re.search(r'\d', passwd) and re.search(r'[!#$%&*+?@]', passwd):
+            if len(passwd) > 7 and re.search(r'[a-z]', passwd) and re.search(r'[A-Z]', passwd) and re.search(r'\d', passwd) and re.search(r'[!"#$%&()*+,-./:;<=>?@[\]^_`{|}~]', passwd):
                 break
             else:
-                print(f"{RED}Hibás formátum! (Minimum hosszúság: 8 karakter, Tartalmaznia kell: kisbetű, nagybetű, szám, speciális karakter(!,#,$,%,&,*,+,?,@)){RESET}")
+                print(f"{RED}Hibás formátum! (Minimum hosszúság: 8 karakter, A jelszónak tartalmaznia kell: kisbetű, nagybetű, szám, speciális karakter){RESET}")
         except:
             continue
     return passwd

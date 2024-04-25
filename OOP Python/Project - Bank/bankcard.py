@@ -2,7 +2,16 @@ import random
 from enum import Enum
 from datetime import datetime
 
-
+def expdate_generator():
+    expdate = datetime.now()
+    expdate = str(expdate)
+    year = expdate[2:4]
+    month = expdate[5:7]
+    year = int(year)
+    expdate = year + random.randint(3, 5)
+    expdate = str(expdate)
+    expdate = month + "/" + expdate
+    return expdate
 class CardBrand(Enum):
     VISA = "Visa"
     MASTERCARD = "Mastercard"
@@ -24,7 +33,7 @@ class Bankcard:
 
 
 
-    def create_bankcard(self, brand):
+    def create_bankcard():
         while True:
             try:
                 brand = input("Kártya kibocsátó: ")
@@ -38,7 +47,10 @@ class Bankcard:
                     print("Hibás adat!")
             except:
                 continue
-        self.__expdate =
+        self.__expdate = expdate_generator()
+        self.__cvv = random.randint(100, 999)
+        self.__rfidtag = random.randint(1000000000000000, 9999999999999999)
+
 
 
 
