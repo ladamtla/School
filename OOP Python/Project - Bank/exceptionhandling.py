@@ -1,8 +1,6 @@
 import re
 import csv
-
-RED = "\033[31m"
-RESET = "\033[0m"
+from format import *
 
 def namevalidator():
     while True:
@@ -30,7 +28,7 @@ def phonevalidator():
     return phone
 
 def emailvalidator():
-    pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+    pattern = r"^[a-zA-Z0-9-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
     while True:
         try:
             email = input("Email cím: ")
