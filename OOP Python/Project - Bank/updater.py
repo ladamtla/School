@@ -28,5 +28,60 @@ def csv_writer(file_path, search_key, new_data):
         writer.writerows(data)
 
 
+def max_id(num):
+
+    adminids = []
+    empids = []
+    customerids = []
+    pids1 = []
+    pids2 = []
+    pids3 = []
+
+    with open("Peoples/admins.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            try:
+                adminids.append(int(row[7]))
+                pids1.append(int(row[6]))
+            except ValueError:
+                pass
+
+    with open("Peoples/employees.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            try:
+                empids.append(int(row[7]))
+                pids2.append(int(row[6]))
+            except ValueError:
+                pass
+
+    with open("Peoples/customers.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            try:
+                customerids.append(int(row[7]))
+                pids3.append(int(row[6]))
+            except ValueError:
+                pass
+
+    pids = pids1 + pids2 + pids3
+    maxadminid = max(adminids)
+    maxempid = max(empids)
+    maxcustomerid = max(customerids)
+    maxpid = max(pids)
+
+    if num == 0:
+        return maxpid
+    elif num == 1:
+        return maxadminid
+    elif num == 2:
+        return maxempid
+    elif num == 3:
+        return maxcustomerid
+
+
+
+
+
 
 

@@ -1,6 +1,8 @@
 import time
 from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, usernamevalidator, passwdvalidator
 from format import *
+from updater import updater
+from updater import max_id
 
 
 
@@ -17,6 +19,18 @@ class Person:
     @property
     def name(self):
         return self.__name
+
+
+    def passw(self):
+        return self.__passw
+
+    @property
+    def username(self):
+        return self.__username
+
+
+    def create_person(self):
+        newperson = None
 
 
     def data_updater(self):

@@ -2,6 +2,9 @@ from person import Person
 from format import *
 from updater import csv_writer
 import time
+import csv
+from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator
+from updater import max_id
 class Customer(Person):
     def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, customerId: int, bankcards: list):
         super().__init__(name, phone, email, city, username, passw, pid)
@@ -11,6 +14,26 @@ class Customer(Person):
     def __str__(self):
         base_info = super().__str__()
         return f"{base_info}\nBankkártyák: {self.__bankcards}\nCustomer ID: {self.__customerId}"
+
+    def create_person(self):
+        name = namevalidator()
+        phone = phonevalidator()
+        email = emailvalidator()
+        city = cityvalidator()
+        username = name[:5] + phone[-3:]
+        passw = "123456789"
+        maxpid = max_id(0)
+        pid = maxpid + 1
+        maxcustomerid = max_id(3)
+        customerid = maxcustomerid + 1
+        bcs = []
+        newperson = Customer(name, phone, email, city, username, passw, pid, customerid, bcs)
+        newcustomerdata = [name, phone, email, city, username, passw, pid, customerid, bcs]
+        with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(newcustomerdata)
+        super().create_person()
+        return newperson
 
     def data_updater(self):
         super().data_updater()
