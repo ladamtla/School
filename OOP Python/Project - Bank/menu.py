@@ -50,4 +50,9 @@ def pass_validator(passwd):
         except:
             continue
 
+def adminmenu(pid):
+    pass
+
+def 
+
 
