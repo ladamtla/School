@@ -1,5 +1,6 @@
 from format import *
 import time
+from employee import Employee
 
 def login(admins, employees, customers):
     while True:
@@ -20,7 +21,9 @@ def login(admins, employees, customers):
                 time.sleep(1)
         except:
             continue
-    return pid
+    print(pid)
+    print(selector)
+    return pid, selector
 
 def loginto(persons):
     while True:
@@ -50,9 +53,39 @@ def pass_validator(passwd):
         except:
             continue
 
+def mainmenu(pid, selector):
+    if selector == 0:
+        adminmenu(pid)
+    elif selector == 1:
+        empmenu(pid)
+    elif selector == 2:
+        customermenu(pid)
+
 def adminmenu(pid):
+    while True:
+        try:
+            selector = input(
+                f"{CYAN}1 - Új dolgozó létrehozása\n2 - 2. opció\n3 - 3. opció{RESET}\nVálasszon műveletet: ")
+            if selector == "1":
+                Employee.create_person()
+                break
+            elif selector == "2":
+                pass
+                break
+            elif selector == "3":
+                pass
+                break
+            else:
+                print(f"{RED}Hibás menüpont!{RESET}")
+                time.sleep(1)
+        except:
+            continue
+    return pid
+
+def empmenu(pid):
     pass
 
-def 
+def customermenu(pid):
+    pass
 
 

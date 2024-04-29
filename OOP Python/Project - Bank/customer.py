@@ -5,15 +5,16 @@ import time
 import csv
 from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator
 from updater import max_id
+from bankaccount import BankAccount
 class Customer(Person):
-    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, customerId: int, bankcards: list):
+    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, customerId: int, bankaccount: BankAccount):
         super().__init__(name, phone, email, city, username, passw, pid)
         self.__customerId = customerId
-        self.__bankcards = bankcards
+        self.__bankaccount = bankaccount
 
     def __str__(self):
         base_info = super().__str__()
-        return f"{base_info}\nBankkártyák: {self.__bankcards}\nCustomer ID: {self.__customerId}"
+        return f"{base_info}\nBankszámla: {self.__bankcards}\nCustomer ID: {self.__customerId}"
 
 
     def create_person(self):
@@ -27,9 +28,9 @@ class Customer(Person):
         pid = maxpid + 1
         maxcustomerid = max_id(3)
         customerid = maxcustomerid + 1
-        bcs = []
-        newperson = Customer(name, phone, email, city, username, passw, pid, customerid, bcs)
-        newcustomerdata = [name, phone, email, city, username, passw, pid, customerid, bcs]
+        ba = None
+        newperson = Customer(name, phone, email, city, username, passw, pid, customerid, ba)
+        newcustomerdata = [name, phone, email, city, username, passw, pid, customerid, ba]
         with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newcustomerdata)

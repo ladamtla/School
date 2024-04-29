@@ -2,7 +2,7 @@ from admin import Admin
 from employee import Employee
 from customer import Customer
 from updater import updater
-from menu import login
+from menu import login, mainmenu
 import time
 from format import *
 from bankaccount import BankAccount
@@ -25,5 +25,5 @@ customers = updater("Peoples/customers.csv", Customer)
 
 #print(customers[6])
 
-pid = login(admins, employees, customers)
-print(pid)
+pid, selector = login(admins, employees, customers)
+mainmenu(pid, selector)
