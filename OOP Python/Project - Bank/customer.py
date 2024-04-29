@@ -15,6 +15,7 @@ class Customer(Person):
         base_info = super().__str__()
         return f"{base_info}\nBankkártyák: {self.__bankcards}\nCustomer ID: {self.__customerId}"
 
+
     def create_person(self):
         name = namevalidator()
         phone = phonevalidator()

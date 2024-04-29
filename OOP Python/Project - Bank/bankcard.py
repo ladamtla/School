@@ -33,7 +33,7 @@ class Bankcard:
     def create_bankcard(cls, name):
         while True:
             try:
-                brand = input("1 - Visa\n2 - MasterCard\nKártya kibocsátó: ")
+                brand = input(f"1 - Visa\n2 - MasterCard\n{ITALIC}{YELLOW}Kártya kibocsátó: {RESET}")
                 if brand == "1":
                     brand = "VISA"
                     cardnum = random.randint(4000000000000000, 4999999999999999)

@@ -20,9 +20,13 @@ class Person:
     def name(self):
         return self.__name
 
-
-    def passw(self):
+    @property
+    def passwd(self):
         return self.__passw
+
+    @property
+    def pid(self):
+        return self.__pid
 
     @property
     def username(self):

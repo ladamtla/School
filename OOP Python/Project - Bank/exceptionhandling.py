@@ -5,7 +5,7 @@ from format import *
 def namevalidator():
     while True:
         try:
-            name = input("Teljes név: ")
+            name = input(f"{ITALIC}{YELLOW}Teljes név: {RESET}")
             if " " in name:
                 break
             else:
@@ -18,7 +18,7 @@ def phonevalidator():
     pattern = r"^\+[0-9]{10,}$"
     while True:
         try:
-            phone = input("Telefonszám (+36123456789): ")
+            phone = input(f"{ITALIC}{YELLOW}Telefonszám (+36123456789): {RESET}")
             if re.match(pattern, phone):
                 break
             else:
@@ -31,7 +31,7 @@ def emailvalidator():
     pattern = r"^[a-zA-Z0-9-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
     while True:
         try:
-            email = input("Email cím: ")
+            email = input(f"{ITALIC}{YELLOW}Email cím: {RESET}")
             if re.match(pattern, email):
                 break
             else:
@@ -51,7 +51,7 @@ def cityvalidator():
 
     while True:
         try:
-            city = input("Település: ")
+            city = input(f"{ITALIC}{YELLOW}Település: {RESET}")
             if city in cities_set:
                 return city
             else:
@@ -63,7 +63,7 @@ def usernamevalidator():
     pattern = "^[a-zA-Z0-9]{5,}$"
     while True:
         try:
-            username = input("Felhasználónév: ")
+            username = input(f"{ITALIC}{YELLOW}Felhasználónév: {RESET}")
             if re.match(pattern, username):
                 break
             else:
@@ -75,7 +75,7 @@ def usernamevalidator():
 def passwdvalidator():
     while True:
         try:
-            passwd = input("Jelszó: ")
+            passwd = input(f"{ITALIC}{YELLOW}Jelszó: {RESET}")
             if len(passwd) > 7 and re.search(r'[a-z]', passwd) and re.search(r'[A-Z]', passwd) and re.search(r'\d', passwd) and re.search(r'[!"#$%&()*+,-./:;<=>?@[\]^_`{|}~]', passwd):
                 break
             else:
