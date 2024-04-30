@@ -26,4 +26,4 @@ customers = updater("Peoples/customers.csv", Customer)
 #print(customers[6])
 
 pid, selector = login(admins, employees, customers)
-mainmenu(pid, selector)
+mainmenu(pid, selector, admins, employees, customers)

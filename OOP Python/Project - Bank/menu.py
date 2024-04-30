@@ -1,6 +1,7 @@
 from format import *
 import time
 from employee import Employee
+from updater import updater, max_id
 
 def login(admins, employees, customers):
     while True:
@@ -21,8 +22,6 @@ def login(admins, employees, customers):
                 time.sleep(1)
         except:
             continue
-    print(pid)
-    print(selector)
     return pid, selector
 
 def loginto(persons):
@@ -39,7 +38,7 @@ def loginto(persons):
             break
         except:
             continue
-    return pid
+    return int(pid)
 
 def pass_validator(passwd):
     while True:
@@ -53,24 +52,30 @@ def pass_validator(passwd):
         except:
             continue
 
-def mainmenu(pid, selector):
-    if selector == 0:
-        adminmenu(pid)
-    elif selector == 1:
-        empmenu(pid)
-    elif selector == 2:
-        customermenu(pid)
+def mainmenu(pid, selector, admins, employees, customers):
+    print("mainmenu")
+    if selector == "1":
+        adminmenu(pid, admins, employees)
+    elif selector == "2":
+        empmenu(pid, employees)
+    elif selector == "3":
+        customermenu(pid, customers)
 
-def adminmenu(pid):
+def adminmenu(pid, admins, employees):
+    print(f"Admin menü {admins[pid-1].name} részére")
     while True:
         try:
             selector = input(
-                f"{CYAN}1 - Új dolgozó létrehozása\n2 - 2. opció\n3 - 3. opció{RESET}\nVálasszon műveletet: ")
+                f"{CYAN}1 - Új dolgozó létrehozása\n2 - Dolgozó adatmódosítás\n3 - 3. opció{RESET}\nVálasszon műveletet: ")
             if selector == "1":
-                Employee.create_person()
+                print("1es")
+                new_emp = Employee(None, None, None, None, None, None, None, None)
+                new_emp = Employee.create_person(new_emp)
+                employees = updater("Peoples/employees.csv", Employee)
+                print(f"{GREEN}Új dolgozó sikeresen létrehozva {employees[max_id(2)].name} néven!{RESET}")
                 break
             elif selector == "2":
-                pass
+                Employee.data_updater()
                 break
             elif selector == "3":
                 pass
@@ -80,7 +85,6 @@ def adminmenu(pid):
                 time.sleep(1)
         except:
             continue
-    return pid
 
 def empmenu(pid):
     pass
