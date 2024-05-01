@@ -50,6 +50,6 @@ class Employee(Person):
 
     def data_updater(self):
         super().data_updater()
-        csv_writer("Peoples/customers.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])
+        csv_writer("Peoples/employees.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])
         print(f"{GREEN}Az adatmódosítás sikeres!{RESET}")
         time.sleep(1)
