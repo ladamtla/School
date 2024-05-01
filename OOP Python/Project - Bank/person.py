@@ -44,6 +44,7 @@ class Person:
     def data_updater(self):
         while True:
             try:
+                print(" ")
                 selector = input(
                     f"{CYAN}1 - Összes adat\n2 - Név\n3 - Telefonszám\n4 - E-mail cím\n5 - Település\n6 - Jelszó{RESET}\nMilyen adato(ka)t szeretne módosítani?: ")
                 if selector == "1":
