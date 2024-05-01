@@ -2,21 +2,23 @@ from format import *
 import time
 from employee import Employee
 from updater import updater, max_id
+from admin import Admin
+from customer import Customer
 
-def login(admins, employees, customers):
+def mainmenu(admins, employees, customers):
     while True:
         try:
+            print(" ")
+            print(f"------ Bejelentkezés ------")
             selector = input(
                 f"{CYAN}1 - Admin\n2 - Banki alkalmazott\n3 - Felhasználó{RESET}\nVálasszon fióktípust a bejelentkezéshez!: ")
             if selector == "1":
-                pid = loginto(admins)
-                break
+                pid, sid = login(admins)
+                adminmenu(pid, sid, admins, employees, customers)
             elif selector == "2":
-                pid = loginto(employees)
-                break
+                pid, sid = login(employees)
             elif selector == "3":
-                pid = loginto(customers)
-                break
+                pid, sid = login(customers)
             else:
                 print(f"{RED}Hibás menüpont!{RESET}")
                 time.sleep(1)
@@ -24,72 +26,73 @@ def login(admins, employees, customers):
             continue
     return pid, selector
 
-def loginto(persons):
+def login(persons):
     while True:
-        try:
-            username = input(f"{YELLOW}{ITALIC}Felhasználónév: {RESET}")
-            for person in persons:
-                pid = person.pid
-                if username == person.username:
-                    pass_validator(person.passwd)
-                    break
-                else:
-                    print(f"{RED}Hibás felhasználónév!{RESET}")
+        print(" ")
+        username = input(f"{YELLOW}{ITALIC}Felhasználónév: {RESET}")
+        for person in persons:
+            if username == person.username:
+                sid = int(person.sid)
+                pass_validator(person.passwd, persons, sid)
+                return int(person.pid), int(person.sid)
+        else:
+            print(f"{RED}Hibás felhasználónév!{RESET}")
+            continue
+
+
+
+def pass_validator(passwd, persons, sid):
+    while True:
+        inpass = input(f"{YELLOW}{ITALIC}Jelszó: {RESET}")
+        if inpass == passwd:
+            print(" ")
+            print(f"{GREEN}------ Sikeres bejelentkezés! ------{RESET}")
             break
-        except:
-            continue
-    return int(pid)
+        else:
+            print(f"{RED}Hibás jelszó!{RESET}")
 
-def pass_validator(passwd):
+
+
+
+def adminmenu(pid, sid, admins, employees, customers):
+
     while True:
         try:
-            inpass = input(f"{YELLOW}{ITALIC}Jelszó: {RESET}")
-            if inpass == passwd:
-                print(f"{GREEN}Sikeres bejelentkezés!{RESET}")
-                break
-            else:
-                print(f"{RED}Hibás jelszó!{RESET}")
-        except:
-            continue
-
-def mainmenu(pid, selector, admins, employees, customers):
-    print("mainmenu")
-    if selector == "1":
-        adminmenu(pid, admins, employees)
-    elif selector == "2":
-        empmenu(pid, employees)
-    elif selector == "3":
-        customermenu(pid, customers)
-
-def adminmenu(pid, admins, employees):
-    print(f"Admin menü {admins[pid-1].name} részére")
-    while True:
-        try:
+            print(" ")
+            print(f"Admin menü {BOLD}{admins[sid - 1].name}{RESET} részére")
             selector = input(
-                f"{CYAN}1 - Új dolgozó létrehozása\n2 - Dolgozó adatmódosítás\n3 - 3. opció{RESET}\nVálasszon műveletet: ")
+                f"{CYAN}1 - Új dolgozó létrehozása\n2 - Új admin létrehozása\n3 - Dolgozó adatmódosítás\n4 - Saját adatok módosítása\nx - Kilépés{RESET}\nVálasszon műveletet: ")
             if selector == "1":
-                print("1es")
                 new_emp = Employee(None, None, None, None, None, None, None, None)
                 new_emp = Employee.create_person(new_emp)
                 employees = updater("Peoples/employees.csv", Employee)
-                print(f"{GREEN}Új dolgozó sikeresen létrehozva {employees[max_id(2)].name} néven!{RESET}")
-                break
+                print(" ")
+                print(f"{GREEN}Új dolgozó sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_emp.name}{RESET} {GREEN}néven!{RESET}")
             elif selector == "2":
-                Employee.data_updater()
-                break
+                new_admin = Admin(None, None, None, None, None, None, None, None)
+                new_admin = Admin.create_person(new_admin)
+                admins = updater("Peoples/admins.csv", Admin)
+                print(" ")
+                print(f"{GREEN}Új admin sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_admin.name}{RESET} {GREEN}néven!{RESET}")
             elif selector == "3":
-                pass
+                try:
+                    while True:
+                        cid = int(input(f"Adja meg a dolgozó ID számát: "))
+                        if cid <= max_id(2):
+                            Employee.data_updater(employees[cid-1])
+                            break
+                        else:
+                            continue
+                except:
+                    continue
+            elif selector == "4":
+                Admin.data_updater(admins[sid-1])
+            elif selector == "x":
                 break
             else:
                 print(f"{RED}Hibás menüpont!{RESET}")
                 time.sleep(1)
         except:
             continue
-
-def empmenu(pid):
-    pass
-
-def customermenu(pid):
-    pass
 
 

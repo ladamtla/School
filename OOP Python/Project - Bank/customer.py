@@ -3,18 +3,31 @@ from format import *
 from updater import csv_writer
 import time
 import csv
-from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator
+from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, passwdvalidator
 from updater import max_id
 from bankaccount import BankAccount
 class Customer(Person):
-    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, customerId: int, bankaccount: BankAccount):
+    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, sid: int, bankaccount: BankAccount):
         super().__init__(name, phone, email, city, username, passw, pid)
-        self.__customerId = customerId
+        self.__sid = sid
         self.__bankaccount = bankaccount
+
+
+    @property
+    def username(self):
+        return self._Person__username
+
+    @property
+    def passw(self):
+        return self._Person__passw
+
+    @property
+    def sid(self):
+        return self.__sid
 
     def __str__(self):
         base_info = super().__str__()
-        return f"{base_info}\nBankszámla: {self.__bankcards}\nCustomer ID: {self.__customerId}"
+        return f"{base_info}\nBankszámla: {self.__bankcards}\nCustomer ID: {self.__sid}"
 
 
     def create_person(self):
@@ -23,14 +36,14 @@ class Customer(Person):
         email = emailvalidator()
         city = cityvalidator()
         username = name[:5] + phone[-3:]
-        passw = "123456789"
+        passw = passwdvalidator()
         maxpid = max_id(0)
         pid = maxpid + 1
-        maxcustomerid = max_id(3)
-        customerid = maxcustomerid + 1
+        maxsid = max_id(3)
+        sid = maxsid + 1
         ba = None
-        newperson = Customer(name, phone, email, city, username, passw, pid, customerid, ba)
-        newcustomerdata = [name, phone, email, city, username, passw, pid, customerid, ba]
+        newperson = Customer(name, phone, email, city, username, passw, pid, sid, ba)
+        newcustomerdata = [name, phone, email, city, username, passw, pid, sid, ba]
         with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newcustomerdata)

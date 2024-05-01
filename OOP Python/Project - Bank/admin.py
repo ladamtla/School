@@ -8,9 +8,9 @@ from format import *
 
 
 class Admin(Person):
-    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, adminid: int):
+    def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, sid: int):
         super().__init__(name, phone, email, city, username, passw, pid)
-        self.__adminid = adminid
+        self.__sid = sid
 
     @property
     def username(self):
@@ -21,13 +21,13 @@ class Admin(Person):
         return self._Person__passw
 
     @property
-    def adminid(self):
-        return self.__adminid
+    def sid(self):
+        return self.__sid
 
 
     def __str__(self):
         base_info = super().__str__()
-        return f"{base_info}\nAdmin ID: {self.__adminid}"
+        return f"{base_info}\nAdmin ID: {self.__sid}"
 
     def create_person(self):
         super().create_person()
@@ -36,11 +36,11 @@ class Admin(Person):
         email = emailvalidator()
         city = cityvalidator()
         username = name[:5] + phone[-3:]
-        passw = "123456789"
+        passw = passwdvalidator()
         maxpid = max_id(0)
         pid = maxpid + 1
-        maxadminid = max_id(1)
-        adminid = maxadminid + 1
+        maxsid = max_id(1)
+        adminid = maxsid + 1
         newperson = Admin(name, phone, email, city, username, passw, pid, adminid)
         newadmindata = [name, phone, email, city, username, passw, pid, adminid]
         with open("Peoples/admins.csv", 'a', newline='', encoding='utf-8') as csvfile:

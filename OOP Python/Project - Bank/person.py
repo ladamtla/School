@@ -29,6 +29,10 @@ class Person:
         return self.__pid
 
     @property
+    def sid(self):
+        return self.__sid
+
+    @property
     def username(self):
         return self.__username
 
@@ -69,6 +73,9 @@ class Person:
                     time.sleep(1)
             except:
                 continue
+
+    def pass_updater(self):
+            self.__passw = passwdvalidator()
 
 
 

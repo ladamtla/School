@@ -77,9 +77,15 @@ def passwdvalidator():
         try:
             passwd = input(f"{ITALIC}{YELLOW}Jelszó: {RESET}")
             if len(passwd) > 7 and re.search(r'[a-z]', passwd) and re.search(r'[A-Z]', passwd) and re.search(r'\d', passwd) and re.search(r'[!"#$%&()*+,-./:;<=>?@[\]^_`{|}~]', passwd):
-                break
+                pass
             else:
                 print(f"{RED}Hibás formátum! (Minimum hosszúság: 8 karakter, A jelszónak tartalmaznia kell: kisbetű, nagybetű, szám, speciális karakter){RESET}")
+                continue
+            passwdagain = input(f"{ITALIC}{YELLOW}Jelszó mégegyszer: {RESET}")
+            if passwd == passwdagain:
+                break
+            else:
+                print(f"{RED}A két jelszó nem eggyezik!{RESET}")
         except:
             continue
     return passwd
