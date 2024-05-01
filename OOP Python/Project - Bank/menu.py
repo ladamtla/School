@@ -4,8 +4,9 @@ from employee import Employee
 from updater import updater, max_id
 from admin import Admin
 from customer import Customer
+from bankaccount import BankAccount
 
-def mainmenu(admins, employees, customers):
+def mainmenu(admins, employees, customers, bankaccounts):
     while True:
         try:
             print(" ")
@@ -17,7 +18,7 @@ def mainmenu(admins, employees, customers):
                 adminmenu(pid, sid, admins, employees, customers)
             elif selector == "2":
                 pid, sid = login(employees)
-                empmenu(pid, sid, employees, customers)
+                empmenu(pid, sid, employees, customers, bankaccounts)
             elif selector == "3":
                 pid, sid = login(customers)
             else:
@@ -96,7 +97,7 @@ def adminmenu(pid, sid, admins, employees, customers):
         except:
             continue
 
-def empmenu(pid, sid, employees, customers):
+def empmenu(pid, sid, employees, customers, bankaccounts):
 
     while True:
         try:
@@ -111,11 +112,28 @@ def empmenu(pid, sid, employees, customers):
                 print(" ")
                 print(f"{GREEN}Új ügyfél sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_customer.name}{RESET} {GREEN}néven!{RESET}")
             elif selector == "2":
-                new_ba = Admin(None, None, None, None, None, None, None, None)
-                #new_admin = Admin.create_person(new_admin)
-                #admins = updater("Peoples/admins.csv", Admin)
-                #print(" ")
-                print(f"{GREEN}Új bankszámla sikeresen létrehozva!{RESET}")
+                try:
+                    while True:
+                        cid = int(input(f"Adja meg az ügyfél ID számát aki számára a bankszámlát szeretne létrehozni: "))
+                        print("111")
+                        if cid <= max_id(3):
+                            print("222")
+                            new_ba = BankAccount(None, None, None, None, None)
+                            print("333")
+                            new_ba = BankAccount.create_ba(new_ba)
+                            print("444")
+                            bankaccounts = updater("bankaccounts.csv", BankAccount)
+                            print("555")
+                            Customer.ba_append(customers[cid - 1], new_ba)
+                            print("666")
+                            print(" ")
+                            print(f"{GREEN}Új bankszámla sikeresen létrehozva!{RESET}")
+                            break
+                        else:
+                            continue
+                except:
+                    continue
+
             elif selector == "3":
                 try:
                     while True:

@@ -79,6 +79,20 @@ def max_id(num):
     elif num == 3:
         return maxcustomerid
 
+def max_baid():
+
+    baids = []
+    with open("bankaccounts.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            try:
+                baids.append(int(row[4]))
+            except ValueError:
+                pass
+    maxbaid = max(baids)
+    return maxbaid
+
+
 
 
 

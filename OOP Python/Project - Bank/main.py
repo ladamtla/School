@@ -12,6 +12,7 @@ from bankcard import Bankcard
 admins = updater("Peoples/admins.csv", Admin)
 employees = updater("Peoples/employees.csv", Employee)
 customers = updater("Peoples/customers.csv", Customer)
+bankaccounts = updater("bankaccounts.csv", BankAccount)
 #bc = Bankcard(None, None, None, None, None)
 
 
@@ -25,4 +26,8 @@ customers = updater("Peoples/customers.csv", Customer)
 
 #print(customers[6])
 
-mainmenu(admins, employees, customers)
+#mainmenu(admins, employees, customers, bankaccounts)
+
+ba = BankAccount(None, None, None, None, None)
+BankAccount.create_ba(ba)
+print(ba)

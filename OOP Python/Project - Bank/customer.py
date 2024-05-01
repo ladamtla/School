@@ -55,3 +55,6 @@ class Customer(Person):
         csv_writer("Peoples/customers.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None, None])
         print(f"{GREEN}Az adatmódosítás sikeres!{RESET}")
         time.sleep(1)
+
+    def ba_append(self, ba):
+        self.__bankaccount = ba
