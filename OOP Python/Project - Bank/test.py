@@ -1,13 +1,7 @@
-from datetime import datetime
-import random
+from customer import Customer
+from bankaccount import BankAccount
 
-expdate = datetime.now()
-expdate = str(expdate)
-year = expdate[2:4]
-month = expdate[5:7]
-year = int(year)
-expdate = year + random.randint(3,5)
-expdate = str(expdate)
-expdate = month + "/" + expdate
+ba = BankAccount(111111111111111111111111, 500, [], [], 1)
+customer = Customer("Péter", "+362055454458", "d@gg.ji", "Kács", "llh", "123", 1, 1, ba)
 
-print(expdate)
+print(customer)

@@ -104,7 +104,7 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
             print(" ")
             print(f"Dolgozói menü {BOLD}{employees[sid - 1].name}{RESET} részére")
             selector = input(
-                f"{CYAN}1 - Új ügyfél létrehozása\n2 - Új bankszámla létrehozása\n3 - Ügyfél adatmódosítás\n4 - Saját adatok módosítása\nx - Kilépés{RESET}\nVálasszon műveletet: ")
+                f"{CYAN}1 - Új ügyfél létrehozása\n2 - Új bankszámla létrehozása\n3 - Ügyfél adatmódosítás\n4 - Ügyfél adat lekérdezés\n5 - Saját adatok módosítása\nx - Kilépés{RESET}\nVálasszon műveletet: ")
             if selector == "1":
                 new_customer = Customer(None, None, None, None, None, None, None, None, None)
                 new_customer = Customer.create_person(new_customer)
@@ -115,18 +115,12 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
                 try:
                     while True:
                         cid = int(input(f"Adja meg az ügyfél ID számát aki számára a bankszámlát szeretne létrehozni: "))
-                        print("111")
                         if cid <= max_id(3):
-                            print("222")
                             new_ba = BankAccount(None, None, None, None, None)
-                            print("333")
                             new_ba = BankAccount.create_ba(new_ba)
-                            print("444")
                             bankaccounts = updater("bankaccounts.csv", BankAccount)
-                            print(f"cid: {cid}")
                             Customer.ba_append(customers[cid-1], new_ba)
                             customers = updater("Peoples/customers.csv", Customer)
-                            print("666")
                             print(" ")
                             print(f"{GREEN}Új bankszámla sikeresen létrehozva!{RESET}")
                             break
@@ -147,6 +141,17 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
                 except:
                     continue
             elif selector == "4":
+                try:
+                    while True:
+                        cid = int(input(f"Adja meg az ügyfél ID számát: "))
+                        if cid <= max_id(3):
+                            print(customers[cid-1])
+                            break
+                        else:
+                            continue
+                except:
+                    continue
+            elif selector == "5":
                 Employee.data_updater(employees[sid-1])
             elif selector == "x":
                 break

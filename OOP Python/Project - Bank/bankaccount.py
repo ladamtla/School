@@ -1,18 +1,31 @@
 import random
 from updater import max_baid
 import csv
+from bankcard import Bankcard
 
 class BankAccount:
-    def __init__(self, accountNum: str, balance: int, bankCards: list, transactions: list, baID: int):
-        self.__accountnum = accountNum
+    def __init__(self, accountnum: str, balance: int, bankcards: [Bankcard], transactions: list, baid: int):
+        self.__accountnum = accountnum
         self.__balance = balance
-        self.__bankCards = bankCards
+        self.__bankcards = bankcards
         self.__transactions = transactions
-        self.__baiID = baID
+        self.__baid = baid
 
     @property
     def baid(self):
-        return self.__baiID
+        return self.__baid
+    @property
+    def transactions(self):
+        return self.__transactions
+    @property
+    def bankcards(self):
+        return self.__bankcards
+    @property
+    def balance(self):
+        return self.__balance
+    @property
+    def accountnum(self):
+        return self.__accountnum
 
     def create_ba(self):
 
@@ -32,4 +45,4 @@ class BankAccount:
 
 
     def __str__(self):
-        return f"Számlaszám: {self.__accountnum}\nEgyenleg: {self.__balance}\nBankkártyák: {self.__bankCards}\nTrancakciók: {self.__transactions}\nBankszámla ID: {self.__baiID}"
+        return f"Számlaszám: {self.__accountnum}\nEgyenleg: {self.__balance}\nBankkártyák: {self.__bankCards}\nTrancakciók: {self.__transactions}\nBankszámla ID: {self.__baid}"
