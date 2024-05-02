@@ -2,7 +2,7 @@ from admin import Admin
 from employee import Employee
 from customer import Customer
 from updater import updater
-from menu import mainmenu
+from menu import login, mainmenu
 import time
 from format import *
 from bankaccount import BankAccount
@@ -26,8 +26,4 @@ bankaccounts = updater("bankaccounts.csv", BankAccount)
 
 #print(customers[6])
 
-#mainmenu(admins, employees, customers, bankaccounts)
-
-ba = BankAccount(None, None, None, None, None)
-BankAccount.create_ba(ba)
-print(ba)
+mainmenu(admins, employees, customers, bankaccounts)

@@ -25,6 +25,10 @@ class Customer(Person):
     def sid(self):
         return self.__sid
 
+    @property
+    def bankaccount(self):
+        return self.__bankaccount
+
     def __str__(self):
         base_info = super().__str__()
         return f"{base_info}\nBankszámla: {self.__bankcards}\nCustomer ID: {self.__sid}"
@@ -41,7 +45,7 @@ class Customer(Person):
         pid = maxpid + 1
         maxsid = max_id(3)
         sid = maxsid + 1
-        ba = None
+        ba = BankAccount(None, None, None, None, None)
         newperson = Customer(name, phone, email, city, username, passw, pid, sid, ba)
         newcustomerdata = [name, phone, email, city, username, passw, pid, sid, ba]
         with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
@@ -57,4 +61,9 @@ class Customer(Person):
         time.sleep(1)
 
     def ba_append(self, ba):
+        print("be append")
         self.__bankaccount = ba
+        baid = ba.baid()
+        csv_writer("bankaccounts.csv", self._Person__pid,[None, None, None, None, None, None, None, None, baid])
+        print(f"{GREEN}Bankszámla sikeresen létrehozva!{RESET}")
+        time.sleep(1)

@@ -4,11 +4,15 @@ import csv
 
 class BankAccount:
     def __init__(self, accountNum: str, balance: int, bankCards: list, transactions: list, baID: int):
-        self.accountnum = accountNum
-        self.balance = balance
-        self.bankCards = bankCards
-        self.transactions = transactions
-        self.baiID = baID
+        self.__accountnum = accountNum
+        self.__balance = balance
+        self.__bankCards = bankCards
+        self.__transactions = transactions
+        self.__baiID = baID
+
+    @property
+    def baid(self):
+        return self.__baiID
 
     def create_ba(self):
 
@@ -28,4 +32,4 @@ class BankAccount:
 
 
     def __str__(self):
-        return f"Számlaszám: {self.accountnum}\nEgyenleg: {self.balance}\nBankkártyák: {self.bankCards}\nTrancakciók: {self.transactions}\nTrancakciók: {self.baiID}"
+        return f"Számlaszám: {self.__accountnum}\nEgyenleg: {self.__balance}\nBankkártyák: {self.__bankCards}\nTrancakciók: {self.__transactions}\nBankszámla ID: {self.__baiID}"
