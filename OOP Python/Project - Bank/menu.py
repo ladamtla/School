@@ -1,7 +1,7 @@
 from format import *
 import time
 from employee import Employee
-from updater import updater, max_id
+from updater import updater, max_id, customer_updater
 from admin import Admin
 from customer import Customer
 from bankaccount import BankAccount
@@ -104,32 +104,15 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
             print(" ")
             print(f"Dolgozói menü {BOLD}{employees[sid - 1].name}{RESET} részére")
             selector = input(
-                f"{CYAN}1 - Új ügyfél létrehozása\n2 - Új bankszámla létrehozása\n3 - Ügyfél adatmódosítás\n4 - Ügyfél adat lekérdezés\n5 - Saját adatok módosítása\nx - Kilépés{RESET}\nVálasszon műveletet: ")
+                f"{CYAN}1 - Új ügyfél létrehozása\n2 - Ügyfél adatmódosítás\n3 - Ügyfél adat lekérdezés\n4 - Saját adatok módosítása\nx - Kilépés{RESET}\nVálasszon műveletet: ")
             if selector == "1":
                 new_customer = Customer(None, None, None, None, None, None, None, None, None)
                 new_customer = Customer.create_person(new_customer)
-                customers = updater("Peoples/customers.csv", Customer)
+                customers = customer_updater(Customer, BankAccount)
                 print(" ")
                 print(f"{GREEN}Új ügyfél sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_customer.name}{RESET} {GREEN}néven!{RESET}")
-            elif selector == "2":
-                try:
-                    while True:
-                        cid = int(input(f"Adja meg az ügyfél ID számát aki számára a bankszámlát szeretne létrehozni: "))
-                        if cid <= max_id(3):
-                            new_ba = BankAccount(None, None, None, None, None)
-                            new_ba = BankAccount.create_ba(new_ba)
-                            bankaccounts = updater("bankaccounts.csv", BankAccount)
-                            Customer.ba_append(customers[cid-1], new_ba)
-                            customers = updater("Peoples/customers.csv", Customer)
-                            print(" ")
-                            print(f"{GREEN}Új bankszámla sikeresen létrehozva!{RESET}")
-                            break
-                        else:
-                            continue
-                except:
-                    continue
 
-            elif selector == "3":
+            elif selector == "2":
                 try:
                     while True:
                         cid = int(input(f"Adja meg az ügyfél ID számát: "))
@@ -140,7 +123,7 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
                             continue
                 except:
                     continue
-            elif selector == "4":
+            elif selector == "3":
                 try:
                     while True:
                         cid = int(input(f"Adja meg az ügyfél ID számát: "))
@@ -151,7 +134,7 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
                             continue
                 except:
                     continue
-            elif selector == "5":
+            elif selector == "4":
                 Employee.data_updater(employees[sid-1])
             elif selector == "x":
                 break

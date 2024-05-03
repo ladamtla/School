@@ -1,8 +1,7 @@
 import time
 from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, usernamevalidator, passwdvalidator
 from format import *
-from updater import updater
-from updater import max_id
+
 
 
 

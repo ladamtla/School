@@ -45,4 +45,4 @@ class BankAccount:
 
 
     def __str__(self):
-        return f"Számlaszám: {self.__accountnum}\nEgyenleg: {self.__balance}\nBankkártyák: {self.__bankCards}\nTrancakciók: {self.__transactions}\nBankszámla ID: {self.__baid}"
+        return f"Számlaszám: {self.__accountnum}\nEgyenleg: {self.__balance}\nBankkártyák: {self._BankAccount__bankcards}\nTrancakciók: {self.__transactions}\nBankszámla ID: {self.__baid}"

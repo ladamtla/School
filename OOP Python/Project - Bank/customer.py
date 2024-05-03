@@ -31,7 +31,7 @@ class Customer(Person):
 
     def __str__(self):
         base_info = super().__str__()
-        return f"{base_info}\nCustomer ID: {self.__sid}\n----------\nBankszámla:\n{self.__bankaccount}"
+        return (f"{base_info}\nCustomer ID: {self.__sid}\n----------\nBankszámla adatai:\n{self.__bankaccount}")
 
 
     def create_person(self):
@@ -46,8 +46,9 @@ class Customer(Person):
         maxsid = max_id(3)
         sid = maxsid + 1
         ba = BankAccount(None, None, None, None, None)
+        ba = BankAccount.create_ba(ba)
         newperson = Customer(name, phone, email, city, username, passw, pid, sid, ba)
-        newcustomerdata = [name, phone, email, city, username, passw, pid, sid, [ba.baid, ]]
+        newcustomerdata = [name, phone, email, city, username, passw, pid, sid, ba.baid]
         with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newcustomerdata)
