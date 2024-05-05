@@ -14,7 +14,7 @@ A dolgozó jogosultságai: Ügyfél létrehozása, ügyfél adatmódosítása, �
 
 A program teljes egésze úgy lett megírva, hogy minden adat mentésre kerül csv fájlokba, és objektumként is lérejön, rögtön, valamint következő indításkor betöltődik.
 A program igyekszik betartani az OOP szabályokat.
-A program jelenlegi formályában, terjedelmében teljesen működőképes.
+A program jelenlegi formájában, terjedelmében teljesen működőképes.
 
 
 
