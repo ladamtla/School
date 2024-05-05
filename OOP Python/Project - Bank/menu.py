@@ -1,12 +1,13 @@
 from format import *
 import time
 from employee import Employee
-from updater import updater, max_id, customer_updater
+from updater import updater, max_id, customer_updater, read_transactions
 from admin import Admin
 from customer import Customer
 from bankaccount import BankAccount
+from bankcard import Bankcard
 
-def mainmenu(admins, employees, customers, bankaccounts):
+def mainmenu(admins, employees, customers, bankaccounts, Transaction):
     while True:
         try:
             print(" ")
@@ -18,9 +19,10 @@ def mainmenu(admins, employees, customers, bankaccounts):
                 adminmenu(pid, sid, admins, employees, customers)
             elif selector == "2":
                 pid, sid = login(employees)
-                empmenu(pid, sid, employees, customers, bankaccounts)
+                empmenu(pid, sid, employees, customers, bankaccounts, Transaction)
             elif selector == "3":
                 pid, sid = login(customers)
+                customermenu(pid, sid, customers, bankaccounts, Transaction)
             else:
                 print(f"{RED}Hibás menüpont!{RESET}")
                 time.sleep(1)
@@ -39,12 +41,20 @@ def login(persons):
                 return int(person.pid), int(person.sid)
         else:
             print(f"{RED}Hibás felhasználónév!{RESET}")
+            time.sleep(1)
             continue
 
-
-
 def pass_validator(passwd, persons, sid):
+    attempt = 0
     while True:
+        if attempt > 2:
+            print(f"{RED}3 alkalommal hibás jelszót adott meg. Próbálja újra 1 perc múlva!{RESET}")
+            sec = 60
+            while sec > 0:
+                print(f"{RED}{BOLD}{sec}{RESET}")
+                sec -= 1
+                time.sleep(1)
+            attempt = 0
         inpass = input(f"{YELLOW}{ITALIC}Jelszó: {RESET}")
         if inpass == passwd:
             print(" ")
@@ -52,9 +62,8 @@ def pass_validator(passwd, persons, sid):
             break
         else:
             print(f"{RED}Hibás jelszó!{RESET}")
-
-
-
+            attempt += 1
+            time.sleep(1)
 
 def adminmenu(pid, sid, admins, employees, customers):
 
@@ -70,12 +79,14 @@ def adminmenu(pid, sid, admins, employees, customers):
                 employees = updater("Peoples/employees.csv", Employee)
                 print(" ")
                 print(f"{GREEN}Új dolgozó sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_emp.name}{RESET} {GREEN}néven!{RESET}")
+                time.sleep(1)
             elif selector == "2":
                 new_admin = Admin(None, None, None, None, None, None, None, None)
                 new_admin = Admin.create_person(new_admin)
                 admins = updater("Peoples/admins.csv", Admin)
                 print(" ")
                 print(f"{GREEN}Új admin sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_admin.name}{RESET} {GREEN}néven!{RESET}")
+                time.sleep(1)
             elif selector == "3":
                 try:
                     while True:
@@ -97,7 +108,7 @@ def adminmenu(pid, sid, admins, employees, customers):
         except:
             continue
 
-def empmenu(pid, sid, employees, customers, bankaccounts):
+def empmenu(pid, sid, employees, customers, bankaccounts, Transaction):
 
     while True:
         try:
@@ -108,9 +119,10 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
             if selector == "1":
                 new_customer = Customer(None, None, None, None, None, None, None, None, None)
                 new_customer = Customer.create_person(new_customer)
-                customers = customer_updater(Customer, BankAccount)
+                customers = customer_updater(Customer, BankAccount, Bankcard, Transaction)
                 print(" ")
                 print(f"{GREEN}Új ügyfél sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_customer.name}{RESET} {GREEN}néven!{RESET}")
+                time.sleep(1)
 
             elif selector == "2":
                 try:
@@ -144,4 +156,50 @@ def empmenu(pid, sid, employees, customers, bankaccounts):
         except:
             continue
 
+def customermenu(pid, sid, customers, bankaccounts, Transaction):
+    while True:
+        try:
+            print(" ")
+            print(f"Ügyfél menü {BOLD}{customers[sid - 1].name}{RESET} részére")
+            selector = input(
+                f"{CYAN}1 - Banki átutalás\n2 - Saját adatok megtekintése\n3 - Tranzakciók listázása\nx - Kilépés{RESET}\nVálasszon műveletet: ")
+            if selector == "1":
+                while True:
+                    tsid = int(input(f"{YELLOW}{ITALIC}Adja meg a kedvezményezett ID számát: {RESET}"))
+                    print(max_id(3))
+                    if tsid == sid:
+                        print(f"{RED}Hiba! Saját számlára nem lehet utalni!{RESET}")
+                        continue
+                    elif tsid <= max_id(3):
+                        print("men1")
+                        while True:
+                            amount = int(input(f"{YELLOW}{ITALIC}Adja meg az utalni kívánt összeget: {RESET}"))
+                            print(bankaccounts[sid-1].balance)
+                            if amount > int(bankaccounts[sid-1].balance):
+                                print(f"{RED}Nincs elegendő fedezet a számlán! Hiányzik: {amount-int(bankaccounts[sid-1].balance)}{RESET}")
+                                break
+                            else:
+                                print("men2")
+                                Customer.transfer(customers[sid-1], sid, tsid, amount, bankaccounts)
+                                customers = customer_updater(Customer, BankAccount, Bankcard)
+                                break
+                        break
+                    else:
+                        print(f"{RED}Nem létező ID szám!{RESET}")
+                        time.sleep(1)
+                        continue
 
+            elif selector == "2":
+                print(customers[sid-1])
+            elif selector == "3":
+                transactions = read_transactions(Transaction, BankAccount)
+                trs = transactions[sid-1]
+                for tr in trs:
+                    print(tr)
+            elif selector == "x":
+                break
+            else:
+                print(f"{RED}Hibás menüpont!{RESET}")
+                time.sleep(1)
+        except:
+            continue

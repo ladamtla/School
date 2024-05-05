@@ -81,4 +81,4 @@ class Person:
 
 
     def __str__(self):
-        return f"Név: {self.__name}\nTelefonszám: {self.__phone}\nE-mail cím: {self.__email}\nTelepülés: {self.__city}\nFelhasználónév: {self.__username}\nJelszó: {self.__passw}\nPerson ID: {self.__pid}"
+        return f"{BLUE}Név: {RESET}{YELLOW}{self.__name}{RESET}\n{BLUE}Telefonszám: {RESET}{YELLOW}{self.__phone}{RESET}\n{BLUE}E-mail cím: {RESET}{YELLOW}{self.__email}{RESET}\n{BLUE}Település: {RESET}{YELLOW}{self.__city}{RESET}\n{BLUE}Felhasználónév: {RESET}{YELLOW}{self.__username}{RESET}\n{BLUE}Jelszó: {RESET}{YELLOW}{self.__passw}{RESET}\n{BLUE}Person ID: {RESET}{YELLOW}{self.__pid}{RESET}"

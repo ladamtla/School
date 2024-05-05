@@ -26,7 +26,7 @@ class Employee(Person):
 
     def __str__(self):
         base_info = super().__str__()
-        return f"{base_info}\nEmployee ID: {self.__sid}"
+        return f"{base_info}\n{BLUE}Employee ID: {RESET}{YELLOW}{self.__sid}{RESET}"
 
     def create_person(self):
         super().create_person()

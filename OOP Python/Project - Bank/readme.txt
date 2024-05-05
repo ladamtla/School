@@ -1,17 +1,17 @@
 Program leírása:
 
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
+Alap koncepció: 3 féle feladatkör létezik (Admin, Banki dolgozó és ügyfél)
+Mindhárom más-más metódusokat jogosult meghívni.
+A main.py filet futtatva, egy "bejelentkező" mező nyílik meg.
+Itt a 3 típus küzöl szükséges választani, az első személyek belépési adatai:
+Admin: ladamtla, 123
+Dolgozó: test, 123
+Ügyfél: test, 123
+
+Az admin
 
 
+---
 Feladatmegosztás: kb. 50-50%
 
 * = közös
