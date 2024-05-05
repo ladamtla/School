@@ -22,7 +22,7 @@ def mainmenu(admins:[Admin], employees:[Employee], customers:[Customer], bankacc
             print(" ")
             print(f"------ Bejelentkezés ------")
             selector = input(
-                f"{CYAN}1 - Admin\n2 - Banki alkalmazott\n3 - Felhasználó{RESET}\n{YELLOW}{ITALIC}Válasszon fióktípust a bejelentkezéshez!: {RESET}")
+                f"{CYAN}1 - Admin\n2 - Banki alkalmazott\n3 - Ügyfél{RESET}\n{YELLOW}{ITALIC}Válasszon fióktípust a bejelentkezéshez!: {RESET}")
             if selector == "1":
                 pid, sid = login(admins)
                 adminmenu(pid, sid, admins, employees, customers)
