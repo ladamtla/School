@@ -6,6 +6,9 @@ from format import *
 from transaction import Transaction
 
 class BankAccount:
+    """
+    BankAccount osztály deffiniálása.
+    """
     def __init__(self, accountnum: str, balance: int, bankcard: Bankcard, transactions: list, baid: int):
         self.__accountnum = accountnum
         self.__balance = balance
@@ -14,19 +17,19 @@ class BankAccount:
         self.__baid = baid
 
     @property
-    def baid(self):
+    def baid(self)->int:
         return self.__baid
     @property
-    def transactions(self):
+    def transactions(self)->[Transaction]:
         return self.__transactions
     @property
-    def bankcard(self):
+    def bankcard(self)->Bankcard:
         return self.__bankcard
     @property
-    def balance(self):
+    def balance(self)->int:
         return self.__balance
     @property
-    def accountnum(self):
+    def accountnum(self)->int:
         return self.__accountnum
 
     @bankcard.setter
@@ -37,8 +40,11 @@ class BankAccount:
     def transactions(self, value):
         self.__transactions = value
 
-    def create_ba(self):
-
+    def create_ba(self)->Bankcard:
+        """
+        Bankszámla készítő, autómatikusan lefut új ügyfél létrehzásávál, valamint lérejön hozzá egy bankkártya is.
+        :return: elkészült bankkártya, mint objektum
+        """
         accountnumber = random.randint(221000000000000000, 221099999999999999)
         balance = 0
         bankcard = Bankcard(None, None, None, None, None)
@@ -55,10 +61,20 @@ class BankAccount:
         return newba
 
 
-    def __str__(self):
+    def __str__(self)->str:
+        """
+        Adatok formázása szövegbe.
+        :return: Formázott szöveg
+        """
         return f"{BLUE}Számlaszám: {RESET}{YELLOW}{self.__accountnum}{RESET}\n{BLUE}Egyenleg: {RESET}{YELLOW}{self.__balance}{RESET}\n{BLUE}Trancakciók: {RESET}{YELLOW}{len(self.__transactions)} db{RESET}\n{BLUE}Bankszámla ID: {RESET}{YELLOW}{self.__baid}{RESET}\n----------\n{BLUE}{BOLD}Bankkártya adatai:{RESET}\n{YELLOW}{self._BankAccount__bankcard}{RESET}"
 
-    def mplus(self, amount, sid):
+    def mplus(self, amount:int, sid:int)->Transaction:
+        """
+        Ügyfél azonosítő szám és egy összeg alapján hozzáadja az ügyfél bankszámlájához az összeget, valamint lérehozza a trazakciót, amit vissza is ad.
+        :param amount: a hozzáadni kivánt összeg
+        :param sid: azonosító szám
+        :return: Tranzakció objektum
+        """
         base = self.__balance
         new_balance = int(base) + int(amount)
         self.__balance = new_balance
@@ -68,8 +84,13 @@ class BankAccount:
         return new_transaction
 
 
-    def mminus(self, amount, sid):
-
+    def mminus(self, amount:int, sid:int)->Transaction:
+        """
+        Ügyfél azonosítő szám és egy összeg alapján kivonja az ügyfél bankszámlájához az összeget, valamint lérehozza a trazakciót, amit vissza is ad.
+        :param amount: kovonni kívánt összeg
+        :param sid: azonosító szám
+        :return: Tranzakció objektum
+        """
         base = self.__balance
         new_balance = int(base) - int(amount)
         self.__balance = new_balance

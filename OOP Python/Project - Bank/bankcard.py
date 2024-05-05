@@ -3,7 +3,11 @@ from datetime import datetime
 from format import *
 import csv
 
-def expdate_generator():
+def expdate_generator()->str:
+    """
+    Lejárati dátum random generáló függvény. 3 és 5 év között, a jelenlegi dátumtól.
+    :return: Lejárati dátum "/" jellel formázottan
+    """
     expdate = datetime.now()
     expdate = str(expdate)
     year = expdate[2:4]
@@ -15,6 +19,9 @@ def expdate_generator():
     return expdate
 
 class Bankcard:
+    """
+    Bankkártya osztály deffiniálása.
+    """
     def __init__(self, cardnum: int, expdate: str, cvv: int, brand: str, rfidtag: int):
         self.__cardnum = cardnum
         self.__expdate = expdate
@@ -43,6 +50,10 @@ class Bankcard:
         return  self.__rfidtag
 
     def __str__(self):
+        """
+        Adatok formázása szövegbe.
+        :return: formázott szöveg
+        """
         cardnum_str = str(self.__cardnum)
         cardnum1 = cardnum_str[0:4]
         cardnum2 = cardnum_str[4:8]
@@ -51,6 +62,10 @@ class Bankcard:
         return f"{BLUE}Kártyaszám:{RESET} {YELLOW}{cardnum1} {cardnum2} {cardnum3} {cardnum4} {RESET}\n{BLUE}Lejárati dátum: {RESET}{YELLOW}{self.__expdate}{RESET}\n{BLUE}CVV kód: {RESET}{YELLOW}{self.__cvv}{RESET}\n{BLUE}Márka: {RESET}{YELLOW}{self.__brand}{RESET}\n{BLUE}RFID tag: {RESET}{YELLOW}{self.__rfidtag}{RESET}"
 
     def create_bankcard(self):
+        """
+        Bankkártya létrehozás, autómatikusan lefut bankszámla létrehozásakor, rékérdez a kártya márkájára.
+        :return: Létrehozott Bankcard objektum
+        """
         while True:
             try:
                 brand = input(f"{CYAN}1 - Visa\n2 - MasterCard{RESET}\n{ITALIC}{YELLOW}Kártya kibocsátó: {RESET}")

@@ -7,7 +7,16 @@ from customer import Customer
 from bankaccount import BankAccount
 from bankcard import Bankcard
 
-def mainmenu(admins, employees, customers, bankaccounts, Transaction):
+def mainmenu(admins:[Admin], employees:[Employee], customers:[Customer], bankaccounts:[BankAccount], Transaction):
+    """
+    Főmenü, ez az alapja mindennek, innen indul a bejelentkezés, és kélépés után is ide kerülünk.
+    :param admins: lista az összes admin objektummal
+    :param employees: lista az összes employee objektummal
+    :param customers: lista az összes customer objektummal
+    :param bankaccounts: lista az összes bankaccount objektummal
+    :param Transaction: Transaction osztály
+    :return:
+    """
     while True:
         try:
             print(" ")
@@ -28,9 +37,13 @@ def mainmenu(admins, employees, customers, bankaccounts, Transaction):
                 time.sleep(1)
         except:
             continue
-    return pid, selector
 
 def login(persons):
+    """
+    Univerzális bejelenkező függvény. Egy objektum tömbből dolgozik és felhasználónév-jelszó segítségével bejelentkezteti az adott típúsú felhasználót.
+    :param persons: lista személyekből
+    :return: 2db ID: Person ID (pid), Egyedi oszty ID (sid)
+    """
     while True:
         print(" ")
         username = input(f"{YELLOW}{ITALIC}Felhasználónév: {RESET}")
@@ -44,7 +57,13 @@ def login(persons):
             time.sleep(1)
             continue
 
-def pass_validator(passwd, persons, sid):
+def pass_validator(passwd:str, persons, sid):
+    """
+    Bekér egy jelszót, ellenőrzi, hogy megfelelő-e. 3 próbálkozás után 1 percre letilt.
+    :param passwd: felhasználó tényleges jelszava
+    :param persons: lista az adott felhasználókból
+    :param sid: egyedi felhasználói azonosító
+    """
     attempt = 0
     while True:
         if attempt > 2:
@@ -65,8 +84,15 @@ def pass_validator(passwd, persons, sid):
             attempt += 1
             time.sleep(1)
 
-def adminmenu(pid, sid, admins, employees, customers):
-
+def adminmenu(pid:int, sid:int, admins:[Admin], employees:[Employee], customers:[Customer]):
+    """
+    Admin menü, admin osztály jogosultságaival.
+    :param pid: Person ID
+    :param sid: Egyedi osztály ID
+    :param admins: lista az összes admin objektummal
+    :param employees: lista az összes employee objektummal
+    :param customers: lista az összes customer objektummal
+    """
     while True:
         try:
             print(" ")
@@ -112,8 +138,16 @@ def adminmenu(pid, sid, admins, employees, customers):
         except:
             continue
 
-def empmenu(pid, sid, employees, customers, bankaccounts, Transaction):
-
+def empmenu(pid:int, sid:int, employees:[Employee], customers:[Customer], bankaccounts:[BankAccount], Transaction):
+    """
+    Employee menü, employee osztály jogosultságaival.
+    :param pid: Person ID
+    :param sid: Egyedi osztály ID
+    :param employees: lista az összes employee objektummal
+    :param customers: lista az összes customer objektummal
+    :param bankaccounts: lista az összes bankszámla objektummal
+    :param Transaction: Transaction osztály
+    """
     while True:
         try:
             print(" ")
@@ -161,7 +195,15 @@ def empmenu(pid, sid, employees, customers, bankaccounts, Transaction):
         except:
             continue
 
-def customermenu(pid, sid, customers, bankaccounts, Transaction):
+def customermenu(pid:int, sid:int, customers:[Customer], bankaccounts:[BankAccount], Transaction):
+    """
+    Customer menü, customer osztály jogosultságaival.
+    :param pid: Person ID
+    :param sid: Egyedi osztály ID
+    :param customers: lista az összes customer objektummal
+    :param bankaccounts: lista az összes bankszámla objektummal
+    :param Transaction: Transaction osztály
+    """
     while True:
         try:
             print(" ")

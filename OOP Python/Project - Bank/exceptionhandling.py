@@ -2,7 +2,11 @@ import re
 import csv
 from format import *
 
-def namevalidator():
+def namevalidator()->str:
+    """
+    Ellenőrzötten beolvas egy nevet, majd visszadja azt. Legalább egy " " karektert tartalmaznia kell.
+    :return: név szövegként
+    """
     while True:
         try:
             name = input(f"{ITALIC}{YELLOW}Teljes név: {RESET}")
@@ -14,7 +18,11 @@ def namevalidator():
             continue
     return name
 
-def phonevalidator():
+def phonevalidator()->str:
+    """
+    Ellenőrzötten beolvas egy telefonszámot, majd visszadja azt. "+" jellel kell, hoyg kezdődjön és legalább 10 karakter hosszó legyen.
+    :return: telefonszám szövegként
+    """
     pattern = r"^\+[0-9]{10,}$"
     while True:
         try:
@@ -28,7 +36,11 @@ def phonevalidator():
     return phone
 
 def emailvalidator():
-    pattern = r"^[a-zA-Z0-9-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+    """
+    Ellenőrzötten beolvas egy emailcímet, majd visszadja azt. valami@valami.valami formátum
+    :return:
+    """
+    pattern = r"^[a-zA-Z0-9-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9]+$"
     while True:
         try:
             email = input(f"{ITALIC}{YELLOW}Email cím: {RESET}")
@@ -42,6 +54,10 @@ def emailvalidator():
 
 
 def cityvalidator():
+    """
+    Ellenőrzötten beolvas egy település nevet, majd visszadja azt. Elelnőrzi egy csv lista segítségével, hogy a megadott szöveg valóban egy valós Magyar településnév-e.
+    :return:
+    """
 
     cities_set = set()
     with open("cdata/hun_cities.csv", newline='', encoding='utf-8') as csvfile:
@@ -60,6 +76,10 @@ def cityvalidator():
             continue
 
 def usernamevalidator():
+    """
+    Ellenőrzötten beolvas egy felhasználónevet, majd visszadja azt. kisbetű, nagyvatű, szám lehet benne minimum 5 karakter
+    :return:
+    """
     pattern = "^[a-zA-Z0-9]{5,}$"
     while True:
         try:
@@ -73,6 +93,10 @@ def usernamevalidator():
     return username
 
 def passwdvalidator():
+    """
+    Ellenőrzötten beolvas egy jelszót, majd visszadja azt. Kell bele: kisbetű, nagybetű, szám, spec. karakter, valamint legalább 8 karakter hosszúság.
+    :return:
+    """
     while True:
         try:
             passwd = input(f"{ITALIC}{YELLOW}Jelszó: {RESET}")

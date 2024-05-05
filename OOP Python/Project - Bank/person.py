@@ -3,6 +3,9 @@ from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cit
 from format import *
 
 class Person:
+    """
+    Person alap osztály deffiniálása az alap adatokkal.
+    """
     def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int):
         self.__name = name
         self.__phone = phone
@@ -38,6 +41,9 @@ class Person:
 
 
     def data_updater(self):
+        """
+        Adatmódosító metódus. Lehetőség van az adatokat egysezrre, vagy külön külön is módosítani.
+        """
         while True:
             try:
                 print(" ")
@@ -72,10 +78,18 @@ class Person:
                 continue
 
     def pass_updater(self):
-            self.__passw = passwdvalidator()
+        """
+        Frissíti a jelszót az adott objektumnál
+        """
+        self.__passw = passwdvalidator()
 
 
 
 
-    def __str__(self):
+    def __str__(self)->str:
+        """
+        Adatok formázása szövegbe.
+        :param self: objektum
+        :return: formázott szöveg
+        """
         return f"{BLUE}Név: {RESET}{YELLOW}{self.__name}{RESET}\n{BLUE}Telefonszám: {RESET}{YELLOW}{self.__phone}{RESET}\n{BLUE}E-mail cím: {RESET}{YELLOW}{self.__email}{RESET}\n{BLUE}Település: {RESET}{YELLOW}{self.__city}{RESET}\n{BLUE}Felhasználónév: {RESET}{YELLOW}{self.__username}{RESET}\n{BLUE}Jelszó: {RESET}{YELLOW}{self.__passw}{RESET}\n{BLUE}Person ID: {RESET}{YELLOW}{self.__pid}{RESET}"
