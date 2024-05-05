@@ -13,8 +13,6 @@ class Transaction:
 
 
     def create_transaction(self, sid, amount, type):
-        print(sid)
-        print(max_trid(sid))
         self.__tranID = int(max_trid(sid))+1
         self.__amount = int(amount)
         self.__type = type
@@ -25,6 +23,7 @@ class Transaction:
         with open(filename, 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(trdata)
+        return Transaction(self.__tranID, self.__date, self.__time, self.__amount, self.__type)
 
 
     def __str__(self):

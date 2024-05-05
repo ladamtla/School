@@ -9,5 +9,9 @@ from bankaccount import BankAccount
 from bankcard import Bankcard
 from transaction import Transaction
 
-tr = read_transactions(Transaction, BankAccount)
-print(tr)
+sid = 5
+transactions = read_transactions(Transaction, BankAccount)
+trs = transactions[sid-1]
+print(transactions)
+print(trs)
+

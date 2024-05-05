@@ -46,7 +46,7 @@ def read_transactions(Transaction, BankAccount):
             for row in reader:
                 transactionspart = Transaction(int(row[0]), row[1], row[2], int(row[3]), row[4])
                 transactionsparts.append(transactionspart)
-                transactions.append(transactionsparts)
+        transactions.append(transactionsparts)
     return transactions
 
 def link_transactions_to_bankaccount(transactions, bankaccounts):

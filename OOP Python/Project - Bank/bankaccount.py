@@ -65,6 +65,7 @@ class BankAccount:
         new_transaction = Transaction(None, None, None, None, None)
         new_transaction = Transaction.create_transaction(new_transaction, sid, amount, "+")
         csv_writer_balance(sid, new_balance)
+        return new_transaction
 
 
     def mminus(self, amount, sid):
@@ -75,3 +76,4 @@ class BankAccount:
         new_transaction = Transaction(None, None, None, None, None)
         new_transaction = Transaction.create_transaction(new_transaction, sid, amount, "-")
         csv_writer_balance(sid, new_balance)
+        return new_transaction

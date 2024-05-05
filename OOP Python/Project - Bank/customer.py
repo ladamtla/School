@@ -1,12 +1,13 @@
 from person import Person
 from format import *
-from updater import csv_writer
+from updater import csv_writer, read_transactions
 import time
 import csv
 from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, passwdvalidator
 from updater import max_id
 from bankaccount import BankAccount
 from bankcard import Bankcard
+from transaction import Transaction
 
 class Customer(Person):
     def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int, sid: int, bankaccount: BankAccount):
@@ -84,5 +85,11 @@ class Customer(Person):
         time.sleep(1)
 
     def transfer(self, sid, tsid, amount, bankaccounts):
-        BankAccount.mminus(bankaccounts[sid-1], amount, sid)
-        BankAccount.mplus(bankaccounts[tsid-1], amount, tsid)
+        mintr = BankAccount.mminus(bankaccounts[sid-1], amount, sid)
+        plustr = BankAccount.mplus(bankaccounts[tsid-1], amount, tsid)
+        transactions = read_transactions(Transaction, BankAccount)
+        print(" ")
+        print(f"{YELLOW}Átutalás folyamtban...{RESET}")
+        time.sleep(1)
+        print(f"{GREEN}Az átutalás teljesült!{RESET}")
+        time.sleep(1)

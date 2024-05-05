@@ -1,6 +1,6 @@
 from person import Person
 from updater import csv_writer, max_id
-from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, usernamevalidator, passwdvalidator
+from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, passwdvalidator
 import time
 import csv
 from format import *

@@ -1,5 +1,5 @@
 import time
-from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, usernamevalidator, passwdvalidator
+from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, passwdvalidator
 from format import *
 
 class Person:

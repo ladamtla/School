@@ -1,10 +1,8 @@
 from admin import Admin
 from employee import Employee
 from customer import Customer
-from updater import updater, customer_updater, full_updater
+from updater import updater, customer_updater
 from menu import mainmenu
-import time
-from format import *
 from bankaccount import BankAccount
 from bankcard import Bankcard
 from transaction import Transaction

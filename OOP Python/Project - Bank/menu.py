@@ -13,7 +13,7 @@ def mainmenu(admins, employees, customers, bankaccounts, Transaction):
             print(" ")
             print(f"------ Bejelentkezés ------")
             selector = input(
-                f"{CYAN}1 - Admin\n2 - Banki alkalmazott\n3 - Felhasználó{RESET}\nVálasszon fióktípust a bejelentkezéshez!: ")
+                f"{CYAN}1 - Admin\n2 - Banki alkalmazott\n3 - Felhasználó{RESET}\n{YELLOW}{ITALIC}Válasszon fióktípust a bejelentkezéshez!: {RESET}")
             if selector == "1":
                 pid, sid = login(admins)
                 adminmenu(pid, sid, admins, employees, customers)
@@ -76,6 +76,7 @@ def adminmenu(pid, sid, admins, employees, customers):
             if selector == "1":
                 new_emp = Employee(None, None, None, None, None, None, None, None)
                 new_emp = Employee.create_person(new_emp)
+                employees = employees.append(new_emp)
                 employees = updater("Peoples/employees.csv", Employee)
                 print(" ")
                 print(f"{GREEN}Új dolgozó sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_emp.name}{RESET} {GREEN}néven!{RESET}")
@@ -84,6 +85,7 @@ def adminmenu(pid, sid, admins, employees, customers):
             elif selector == "2":
                 new_admin = Admin(None, None, None, None, None, None, None, None)
                 new_admin = Admin.create_person(new_admin)
+                admins = admins.append(new_admin)
                 admins = updater("Peoples/admins.csv", Admin)
                 print(" ")
                 print(f"{GREEN}Új admin sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_admin.name}{RESET} {GREEN}néven!{RESET}")
@@ -121,6 +123,7 @@ def empmenu(pid, sid, employees, customers, bankaccounts, Transaction):
             if selector == "1":
                 new_customer = Customer(None, None, None, None, None, None, None, None, None)
                 new_customer = Customer.create_person(new_customer)
+                customers = customers.append(new_customer)
                 customers = customer_updater(Customer, BankAccount, Bankcard, Transaction)
                 print(" ")
                 print(f"{GREEN}Új ügyfél sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_customer.name}{RESET} {GREEN}néven!{RESET}")
@@ -168,14 +171,12 @@ def customermenu(pid, sid, customers, bankaccounts, Transaction):
             if selector == "1":
                 while True:
                     tsid = int(input(f"{YELLOW}{ITALIC}Adja meg a kedvezményezett ID számát: {RESET}"))
-                    print(max_id(3))
                     if tsid == sid:
                         print(f"{RED}Hiba! Saját számlára nem lehet utalni!{RESET}")
                         continue
                     elif tsid <= max_id(3):
                         while True:
                             amount = int(input(f"{YELLOW}{ITALIC}Adja meg az utalni kívánt összeget: {RESET}"))
-                            print(bankaccounts[sid-1].balance)
                             if amount > int(bankaccounts[sid-1].balance):
                                 print(f"{RED}Nincs elegendő fedezet a számlán! Hiányzik: {amount-int(bankaccounts[sid-1].balance)}{RESET}")
                                 break
