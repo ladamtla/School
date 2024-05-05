@@ -64,7 +64,6 @@ class BankAccount:
         self.__balance = new_balance
         new_transaction = Transaction(None, None, None, None, None)
         new_transaction = Transaction.create_transaction(new_transaction, sid, amount, "+")
-        print(f"plussid: {sid}")
         csv_writer_balance(sid, new_balance)
 
 
@@ -75,5 +74,4 @@ class BankAccount:
         self.__balance = new_balance
         new_transaction = Transaction(None, None, None, None, None)
         new_transaction = Transaction.create_transaction(new_transaction, sid, amount, "-")
-        print(f"minussid: {sid}")
         csv_writer_balance(sid, new_balance)

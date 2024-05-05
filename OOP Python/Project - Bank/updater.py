@@ -1,6 +1,13 @@
 import csv
 
-from format import *
+def full_updater(Bankcard, BankAccount, Admin, Customer, Employee, Transaction):
+    bankcards = updater("bankcards.csv", Bankcard)
+    bankaccounts = updater("bankaccounts.csv", BankAccount)
+    customers = customer_updater(Customer, BankAccount, Bankcard, Transaction)
+    admins = updater("Peoples/admins.csv", Admin)
+    employees = updater("Peoples/employees.csv", Employee)
+
+    return bankcards, bankaccounts, customers, admins, employees
 def updater(filename, clas):
     list = []
     with open(filename, newline='', encoding='utf-8') as csvfile:
@@ -172,7 +179,6 @@ def max_trid(sid):
 
     sid = int(sid)
     filename = f"Transactiondata/{sid}.csv"
-    print("mxt1")
     trids = []
     with open(filename, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)

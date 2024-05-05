@@ -49,6 +49,7 @@ class Admin(Person):
 
         return newperson
 
+
     def data_updater(self):
         super().data_updater()
         csv_writer("Peoples/admins.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])

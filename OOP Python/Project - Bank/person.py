@@ -2,9 +2,6 @@ import time
 from exceptionhandling import namevalidator, phonevalidator, emailvalidator, cityvalidator, usernamevalidator, passwdvalidator
 from format import *
 
-
-
-
 class Person:
     def __init__(self, name: str, phone: int, email: str, city: str, username: str, passw: str, pid: int):
         self.__name = name

@@ -58,8 +58,9 @@ class Customer(Person):
         print(f"{YELLOW}{ITALIC}Bankszámla létrehozása...")
         time.sleep(1)
         print(f"{GREEN}Bankszámla létrehozva!{RESET}")
-        with open(f"Transactiondata/{sid}.csv", mode='x'):
-            pass
+        filename = f"Transactiondata/{sid}.csv"
+        with open(filename, 'w') as file:
+            file.write("1,2024-01-01,00:00:00.000000,000,+\n")
         newperson = Customer(name, phone, email, city, username, passw, pid, sid, ba)
         newcustomerdata = [name, phone, email, city, username, passw, pid, sid, ba.baid]
         with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
@@ -83,7 +84,5 @@ class Customer(Person):
         time.sleep(1)
 
     def transfer(self, sid, tsid, amount, bankaccounts):
-        print("Custtrans1")
         BankAccount.mminus(bankaccounts[sid-1], amount, sid)
-        print("Custtrans2")
         BankAccount.mplus(bankaccounts[tsid-1], amount, tsid)

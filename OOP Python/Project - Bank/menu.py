@@ -79,6 +79,7 @@ def adminmenu(pid, sid, admins, employees, customers):
                 employees = updater("Peoples/employees.csv", Employee)
                 print(" ")
                 print(f"{GREEN}Új dolgozó sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_emp.name}{RESET} {GREEN}néven!{RESET}")
+                employees = updater("Peoples/employees.csv", Employee)
                 time.sleep(1)
             elif selector == "2":
                 new_admin = Admin(None, None, None, None, None, None, None, None)
@@ -86,6 +87,7 @@ def adminmenu(pid, sid, admins, employees, customers):
                 admins = updater("Peoples/admins.csv", Admin)
                 print(" ")
                 print(f"{GREEN}Új admin sikeresen létrehozva {RESET}{BOLD}{CYAN}{new_admin.name}{RESET} {GREEN}néven!{RESET}")
+                admins = updater("Peoples/admins.csv", Admin)
                 time.sleep(1)
             elif selector == "3":
                 try:
@@ -171,7 +173,6 @@ def customermenu(pid, sid, customers, bankaccounts, Transaction):
                         print(f"{RED}Hiba! Saját számlára nem lehet utalni!{RESET}")
                         continue
                     elif tsid <= max_id(3):
-                        print("men1")
                         while True:
                             amount = int(input(f"{YELLOW}{ITALIC}Adja meg az utalni kívánt összeget: {RESET}"))
                             print(bankaccounts[sid-1].balance)
@@ -179,7 +180,6 @@ def customermenu(pid, sid, customers, bankaccounts, Transaction):
                                 print(f"{RED}Nincs elegendő fedezet a számlán! Hiányzik: {amount-int(bankaccounts[sid-1].balance)}{RESET}")
                                 break
                             else:
-                                print("men2")
                                 Customer.transfer(customers[sid-1], sid, tsid, amount, bankaccounts)
                                 customers = customer_updater(Customer, BankAccount, Bankcard)
                                 break

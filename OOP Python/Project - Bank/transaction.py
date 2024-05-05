@@ -1,5 +1,4 @@
 from datetime import datetime
-from updater import read_bankaccounts
 from updater import max_trid
 import csv
 from format import *
