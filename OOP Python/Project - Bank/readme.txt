@@ -17,6 +17,7 @@ A program igyekszik betartani az OOP szabályokat.
 A program jelenlegi formályában, terjedelmében teljesen működőképes.
 
 
+
 ---
 Feladatmegosztás: kb. 50-50%
 
