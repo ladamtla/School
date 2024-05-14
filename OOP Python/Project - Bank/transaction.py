@@ -42,4 +42,4 @@ class Transaction:
         :param self: objektum
         :return: formázott szöveg
         """
-        return f"{BLUE}ID:{RESET} {YELLOW}{self.__tranID}{RESET} | {BLUE}Dátum:{RESET} {YELLOW}{self.__date}{RESET} | {BLUE}Idő:{RESET} {YELLOW}{self.__time}{RESET} | {BLUE}Összeg:{RESET} {YELLOW}{self.__amount}{RESET} | {BLUE}Típus:{RESET} {YELLOW}{self.__type}{RESET}"
+        return f"{BLUE}ID:{RESET} {YELLOW}{self.__tranID}{RESET} | {BLUE}Date:{RESET} {YELLOW}{self.__date}{RESET} | {BLUE}Time:{RESET} {YELLOW}{self.__time}{RESET} | {BLUE}Amount:{RESET} {YELLOW}{self.__amount}{RESET} | {BLUE}Type:{RESET} {YELLOW}{self.__type}{RESET}"

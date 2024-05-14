@@ -42,7 +42,7 @@ class Customer(Person):
         :return: formázott szöveg
         """
         base_info = super().__str__()
-        return (f"{base_info}\n{BLUE}Customer ID: {RESET}{YELLOW}{self.__sid}{RESET}\n----------\n{BLUE}{BOLD}Bankszámla adatai:{RESET}\n{self.__bankaccount}")
+        return (f"{base_info}\n{BLUE}Customer ID: {RESET}{YELLOW}{self.__sid}{RESET}\n----------\n{BLUE}{BOLD}Bank account details:{RESET}\n{self.__bankaccount}")
 
 
     def create_person(self):
@@ -61,21 +61,21 @@ class Customer(Person):
         maxsid = max_id(3)
         sid = maxsid + 1
         bc = Bankcard(None, None, None, None, None)
-        print(f"{YELLOW}{ITALIC}Bankkártya létrehozása:{RESET}")
+        print(f"{YELLOW}{ITALIC}Create bank card:{RESET}")
         ba = BankAccount(None, None, None, None, None)
         ba = BankAccount.create_ba(ba)
         time.sleep(1)
-        print(f"{GREEN}Bankkártya létrehozva!{RESET}")
+        print(f"{GREEN}Bank card created!{RESET}")
         time.sleep(1)
-        print(f"{YELLOW}{ITALIC}Bankszámla létrehozása...")
+        print(f"{YELLOW}{ITALIC}Create a bank account...")
         time.sleep(1)
-        print(f"{GREEN}Bankszámla létrehozva!{RESET}")
+        print(f"{GREEN}Bank account created!{RESET}")
         filename = f"Transactiondata/{sid}.csv"
         with open(filename, 'w') as file:
             file.write("1,2024-01-01,00:00:00.000000,000,+\n")
         newperson = Customer(name, phone, email, city, username, passw, pid, sid, ba)
         newcustomerdata = [name, phone, email, city, username, passw, pid, sid, ba.baid]
-        with open("Peoples/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
+        with open("People/customers.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newcustomerdata)
         super().create_person()
@@ -86,8 +86,8 @@ class Customer(Person):
         Frissíti az Customer objektumok adatait az customers.csv fileban.
         """
         super().data_updater()
-        csv_writer("Peoples/customers.csv", int(self._Person__pid), [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None, None])
-        print(f"{GREEN}Az adatmódosítás sikeres!{RESET}")
+        csv_writer("People/customers.csv", int(self._Person__pid), [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None, None])
+        print(f"{GREEN}Data modification successful!{RESET}")
         time.sleep(1)
 
     def ba_append(self, ba:BankAccount):
@@ -98,8 +98,8 @@ class Customer(Person):
         print(ba)
         self.__bankaccount = ba
         baid = ba.baid
-        csv_writer("Peoples/customers.csv", self._Person__pid,[None, None, None, None, None, None, None, None, baid])
-        print(f"{GREEN}Bankszámla sikeresen létrehozva!{RESET}")
+        csv_writer("People/customers.csv", self._Person__pid, [None, None, None, None, None, None, None, None, baid])
+        print(f"{GREEN}Bank account created successfully!{RESET}")
         time.sleep(1)
 
     def transfer(self, sid:int, tsid:int, amount:int, bankaccounts:[BankAccount]):
@@ -114,7 +114,7 @@ class Customer(Person):
         plustr = BankAccount.mplus(bankaccounts[tsid-1], amount, tsid)
         transactions = read_transactions(Transaction, BankAccount)
         print(" ")
-        print(f"{YELLOW}Átutalás folyamtban...{RESET}")
+        print(f"{YELLOW}Transfer in progress...{RESET}")
         time.sleep(1)
-        print(f"{GREEN}Az átutalás teljesült!{RESET}")
+        print(f"{GREEN}Transfer is complete!{RESET}")
         time.sleep(1)

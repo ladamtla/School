@@ -56,7 +56,7 @@ def read_transactions(Transaction, BankAccount):
     :return: egy lista mely sorban ügyfelenként listákat tartalmaz, a belső listák az adott ügyfél tranzakcióit tartalmazza Transaction objektumokként
     """
     transactions = []
-    bankaccounts = read_bankaccounts("bankaccounts.csv", BankAccount)
+    bankaccounts = read_bankaccounts("data/bankaccounts.csv", BankAccount)
     for bankaccount in bankaccounts:
         transactionsparts = []
         with open(f"Transactiondata/{bankaccount.baid}.csv", newline='', encoding='utf-8') as csvfile:
@@ -133,9 +133,9 @@ def customer_updater(Customer, BankAccount, Bankcard, Transaction):
     :return: frissített Customer objektumokat tartalmatzó lista
     """
     transactions = read_transactions(Transaction, BankAccount)
-    customers = read_customers("Peoples/customers.csv", Customer)
-    bankaccounts = read_bankaccounts("bankaccounts.csv", BankAccount)
-    bankcards = read_bankcards("bankcards.csv", Bankcard)
+    customers = read_customers("People/customers.csv", Customer)
+    bankaccounts = read_bankaccounts("data/bankaccounts.csv", BankAccount)
+    bankcards = read_bankcards("data/bankcards.csv", Bankcard)
     link_transactions_to_bankaccount(transactions, bankaccounts)
     link_bankcards_to_bankaccount(bankcards, bankaccounts)
     link_bankaccounts_to_customers(customers, bankaccounts)
@@ -178,7 +178,7 @@ def max_id(num:int)->int:
     pids2 = []
     pids3 = []
 
-    with open("Peoples/admins.csv", newline='', encoding='utf-8') as csvfile:
+    with open("People/admins.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             try:
@@ -187,7 +187,7 @@ def max_id(num:int)->int:
             except ValueError:
                 pass
 
-    with open("Peoples/employees.csv", newline='', encoding='utf-8') as csvfile:
+    with open("People/employees.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             try:
@@ -196,7 +196,7 @@ def max_id(num:int)->int:
             except ValueError:
                 pass
 
-    with open("Peoples/customers.csv", newline='', encoding='utf-8') as csvfile:
+    with open("People/customers.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             try:
@@ -227,7 +227,7 @@ def max_baid()->int:
     """
 
     baids = []
-    with open("bankaccounts.csv", newline='', encoding='utf-8') as csvfile:
+    with open("data/bankaccounts.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             try:
@@ -264,7 +264,7 @@ def csv_writer_balance(sid:int, new_balance:int):
     :param new_balance: új egyenleg
     """
 
-    with open("bankaccounts.csv", 'r', newline='', encoding='utf-8') as file:
+    with open("data/bankaccounts.csv", 'r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
         data = list(reader)
 
@@ -272,7 +272,7 @@ def csv_writer_balance(sid:int, new_balance:int):
         if row[-1] == str(sid):
             row[1] = str(new_balance)
 
-    with open("bankaccounts.csv", 'w', newline='', encoding='utf-8') as file:
+    with open("data/bankaccounts.csv", 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)
 

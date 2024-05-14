@@ -54,7 +54,7 @@ class BankAccount:
         baid = max_baid()+1
         newba = BankAccount(accountnumber, balance, bankcard, transactions, baid)
         newbadata = [accountnumber, balance, bcnum, transactions, baid]
-        with open("bankaccounts.csv", 'a', newline='', encoding='utf-8') as csvfile:
+        with open("data/bankaccounts.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newbadata)
 
@@ -66,7 +66,7 @@ class BankAccount:
         Adatok formázása szövegbe.
         :return: Formázott szöveg
         """
-        return f"{BLUE}Számlaszám: {RESET}{YELLOW}{self.__accountnum}{RESET}\n{BLUE}Egyenleg: {RESET}{YELLOW}{self.__balance}{RESET}\n{BLUE}Trancakciók: {RESET}{YELLOW}{len(self.__transactions)} db{RESET}\n{BLUE}Bankszámla ID: {RESET}{YELLOW}{self.__baid}{RESET}\n----------\n{BLUE}{BOLD}Bankkártya adatai:{RESET}\n{YELLOW}{self._BankAccount__bankcard}{RESET}"
+        return f"{BLUE}Account No: {RESET}{YELLOW}{self.__accountnum}{RESET}\n{BLUE}Balance: {RESET}{YELLOW}{self.__balance}{RESET}\n{BLUE}Transactions: {RESET}{YELLOW}{len(self.__transactions)} pcs{RESET}\n{BLUE}Account ID: {RESET}{YELLOW}{self.__baid}{RESET}\n----------\n{BLUE}{BOLD}Bank card details:{RESET}\n{YELLOW}{self._BankAccount__bankcard}{RESET}"
 
     def mplus(self, amount:int, sid:int)->Transaction:
         """

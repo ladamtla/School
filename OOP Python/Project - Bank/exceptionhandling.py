@@ -9,11 +9,11 @@ def namevalidator()->str:
     """
     while True:
         try:
-            name = input(f"{ITALIC}{YELLOW}Teljes név: {RESET}")
+            name = input(f"{ITALIC}{YELLOW}Full name: {RESET}")
             if " " in name:
                 break
             else:
-                print(f"{RED}Teljes nevet adjon meg!{RESET}")
+                print(f"{RED}Give us a full name!{RESET}")
         except:
             continue
     return name
@@ -26,11 +26,11 @@ def phonevalidator()->str:
     pattern = r"^\+[0-9]{10,}$"
     while True:
         try:
-            phone = input(f"{ITALIC}{YELLOW}Telefonszám (+36123456789): {RESET}")
+            phone = input(f"{ITALIC}{YELLOW}Phone number (+36123456789): {RESET}")
             if re.match(pattern, phone):
                 break
             else:
-                print(f"{RED}Hibás formátum!{RESET}")
+                print(f"{RED}Wrong format!{RESET}")
         except:
             continue
     return phone
@@ -43,11 +43,11 @@ def emailvalidator():
     pattern = r"^[a-zA-Z0-9-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9]+$"
     while True:
         try:
-            email = input(f"{ITALIC}{YELLOW}Email cím: {RESET}")
+            email = input(f"{ITALIC}{YELLOW}Email address: {RESET}")
             if re.match(pattern, email):
                 break
             else:
-                print(f"{RED}Hibás formátum!{RESET}")
+                print(f"{RED}Wrong format!{RESET}")
         except:
             continue
     return email
@@ -59,19 +59,19 @@ def cityvalidator():
     :return:
     """
 
-    cities_set = set()
-    with open("cdata/hun_cities.csv", newline='', encoding='utf-8') as csvfile:
+    cities_set = []
+    with open("data/hun_cities.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            cities_set.add(row[0])
+            cities_set.append(row[0])
 
     while True:
         try:
-            city = input(f"{ITALIC}{YELLOW}Település: {RESET}")
+            city = input(f"{ITALIC}{YELLOW}Place of settlement: {RESET}")
             if city in cities_set:
                 return city
             else:
-                print(f"{RED}Valós, Magyar településnevet adjon meg!{RESET}")
+                print(f"{RED}Enter a real, Hungarian place of settlement!{RESET}")
         except:
             continue
 
@@ -83,11 +83,11 @@ def usernamevalidator():
     pattern = "^[a-zA-Z0-9]{5,}$"
     while True:
         try:
-            username = input(f"{ITALIC}{YELLOW}Felhasználónév: {RESET}")
+            username = input(f"{ITALIC}{YELLOW}Username: {RESET}")
             if re.match(pattern, username):
                 break
             else:
-                print(f"{RED}Hibás formátum! (Minimum hosszúság: 5 karakter, Megnengedett: kisbetű, nagybetű, szám){RESET}")
+                print(f"{RED}Wrong format! (Minimum length: 5 characters, allowed characters: lowercase, uppercase, number){RESET}")
         except:
             continue
     return username
@@ -99,17 +99,17 @@ def passwdvalidator():
     """
     while True:
         try:
-            passwd = input(f"{ITALIC}{YELLOW}Jelszó: {RESET}")
+            passwd = input(f"{ITALIC}{YELLOW}Password: {RESET}")
             if len(passwd) > 7 and re.search(r'[a-z]', passwd) and re.search(r'[A-Z]', passwd) and re.search(r'\d', passwd) and re.search(r'[!"#$%&()*+,-./:;<=>?@[\]^_`{|}~]', passwd):
                 pass
             else:
-                print(f"{RED}Hibás formátum! (Minimum hosszúság: 8 karakter, A jelszónak tartalmaznia kell: kisbetű, nagybetű, szám, speciális karakter){RESET}")
+                print(f"{RED}Wrong format! (Minimum length: 8 characters, the password must contain: lowercase, uppercase, number, special character){RESET}")
                 continue
-            passwdagain = input(f"{ITALIC}{YELLOW}Jelszó mégegyszer: {RESET}")
+            passwdagain = input(f"{ITALIC}{YELLOW}Password again: {RESET}")
             if passwd == passwdagain:
                 break
             else:
-                print(f"{RED}A két jelszó nem eggyezik!{RESET}")
+                print(f"{RED}The two passwords are not the same!{RESET}")
         except:
             continue
     return passwd

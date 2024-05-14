@@ -48,7 +48,7 @@ class Person:
             try:
                 print(" ")
                 selector = input(
-                    f"{CYAN}1 - Összes adat\n2 - Név\n3 - Telefonszám\n4 - E-mail cím\n5 - Település\n6 - Jelszó{RESET}\nMilyen adato(ka)t szeretne módosítani?: ")
+                    f"{CYAN}1 - All data\n2 - Name\n3 - Phone number\n4 - E-mail address\n5 - Place of settlement\n6 - Password{RESET}\nWhich data would you like to modify?: ")
                 if selector == "1":
                     self.__name = namevalidator()
                     self.__phone = phonevalidator()
@@ -72,7 +72,7 @@ class Person:
                     self.__passw = passwdvalidator()
                     break
                 else:
-                    print(f"{RED}Hibás menüpont!{RESET}")
+                    print(f"{RED}Wrong menu option!{RESET}")
                     time.sleep(1)
             except:
                 continue
@@ -92,4 +92,4 @@ class Person:
         :param self: objektum
         :return: formázott szöveg
         """
-        return f"{BLUE}Név: {RESET}{YELLOW}{self.__name}{RESET}\n{BLUE}Telefonszám: {RESET}{YELLOW}{self.__phone}{RESET}\n{BLUE}E-mail cím: {RESET}{YELLOW}{self.__email}{RESET}\n{BLUE}Település: {RESET}{YELLOW}{self.__city}{RESET}\n{BLUE}Felhasználónév: {RESET}{YELLOW}{self.__username}{RESET}\n{BLUE}Jelszó: {RESET}{YELLOW}{self.__passw}{RESET}\n{BLUE}Person ID: {RESET}{YELLOW}{self.__pid}{RESET}"
+        return f"{BLUE}Name: {RESET}{YELLOW}{self.__name}{RESET}\n{BLUE}Phone number: {RESET}{YELLOW}{self.__phone}{RESET}\n{BLUE}E-mail address: {RESET}{YELLOW}{self.__email}{RESET}\n{BLUE}Place of settlement: {RESET}{YELLOW}{self.__city}{RESET}\n{BLUE}Username: {RESET}{YELLOW}{self.__username}{RESET}\n{BLUE}Password: {RESET}{YELLOW}{self.__passw}{RESET}\n{BLUE}Person ID: {RESET}{YELLOW}{self.__pid}{RESET}"

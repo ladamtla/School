@@ -59,7 +59,7 @@ class Bankcard:
         cardnum2 = cardnum_str[4:8]
         cardnum3 = cardnum_str[8:12]
         cardnum4 = cardnum_str[12:16]
-        return f"{BLUE}Kártyaszám:{RESET} {YELLOW}{cardnum1} {cardnum2} {cardnum3} {cardnum4} {RESET}\n{BLUE}Lejárati dátum: {RESET}{YELLOW}{self.__expdate}{RESET}\n{BLUE}CVV kód: {RESET}{YELLOW}{self.__cvv}{RESET}\n{BLUE}Márka: {RESET}{YELLOW}{self.__brand}{RESET}\n{BLUE}RFID tag: {RESET}{YELLOW}{self.__rfidtag}{RESET}"
+        return f"{BLUE}Card number:{RESET} {YELLOW}{cardnum1} {cardnum2} {cardnum3} {cardnum4} {RESET}\n{BLUE}Expiration date: {RESET}{YELLOW}{self.__expdate}{RESET}\n{BLUE}CVV number: {RESET}{YELLOW}{self.__cvv}{RESET}\n{BLUE}Brand: {RESET}{YELLOW}{self.__brand}{RESET}\n{BLUE}RFID tag: {RESET}{YELLOW}{self.__rfidtag}{RESET}"
 
     def create_bankcard(self):
         """
@@ -68,7 +68,7 @@ class Bankcard:
         """
         while True:
             try:
-                brand = input(f"{CYAN}1 - Visa\n2 - MasterCard{RESET}\n{ITALIC}{YELLOW}Kártya kibocsátó: {RESET}")
+                brand = input(f"{CYAN}1 - Visa\n2 - MasterCard{RESET}\n{ITALIC}{YELLOW}Card brand: {RESET}")
                 if brand == "1":
                     brand = "VISA"
                     cardnum = random.randint(4000000000000000, 4999999999999999)
@@ -78,7 +78,7 @@ class Bankcard:
                     cardnum = random.randint(5000000000000000, 5999999999999999)
                     break
                 else:
-                    print("Hibás adat!")
+                    print("Wrong input!")
             except:
                 continue
         expdate = expdate_generator()
@@ -86,7 +86,7 @@ class Bankcard:
         rfidtag = random.randint(1000000000000000, 9999999999999999)
 
         bcdata = [cardnum ,expdate, cvv, brand, rfidtag]
-        with open("bankcards.csv", 'a', newline='', encoding='utf-8') as csvfile:
+        with open("data/bankcards.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(bcdata)
 

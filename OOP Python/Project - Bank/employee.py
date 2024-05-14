@@ -53,7 +53,7 @@ class Employee(Person):
         sid = maxempid + 1
         newperson = Employee(name, phone, email, city, username, passw, pid, sid)
         newempdata = [name, phone, email, city, username, passw, pid, sid]
-        with open("Peoples/employees.csv", 'a', newline='', encoding='utf-8') as csvfile:
+        with open("People/employees.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newempdata)
         return newperson
@@ -64,6 +64,6 @@ class Employee(Person):
         Frissíti az Employee objektumok adatait az employees.csv fileban.
         """
         super().data_updater()
-        csv_writer("Peoples/employees.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])
-        print(f"{GREEN}Az adatmódosítás sikeres!{RESET}")
+        csv_writer("People/employees.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])
+        print(f"{GREEN}Data modification successful!{RESET}")
         time.sleep(1)

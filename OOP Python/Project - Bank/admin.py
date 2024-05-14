@@ -54,7 +54,7 @@ class Admin(Person):
         adminid = maxsid + 1
         newperson = Admin(name, phone, email, city, username, passw, pid, adminid)
         newadmindata = [name, phone, email, city, username, passw, pid, adminid]
-        with open("Peoples/admins.csv", 'a', newline='', encoding='utf-8') as csvfile:
+        with open("People/admins.csv", 'a', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(newadmindata)
 
@@ -66,6 +66,6 @@ class Admin(Person):
         Frissíti az Admin objektumok adatait az admins.csv fileban.
         """
         super().data_updater()
-        csv_writer("Peoples/admins.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])
-        print(f"{GREEN}Az adatmódosítás sikeres!{RESET}")
+        csv_writer("People/admins.csv", self._Person__pid, [self._Person__name, self._Person__phone, self._Person__email, self._Person__city, None, self._Person__passw, None, None])
+        print(f"{GREEN}Data modification successful!{RESET}")
         time.sleep(1)
